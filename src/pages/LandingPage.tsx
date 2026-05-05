@@ -1,14 +1,14 @@
-import Navbar from "./Features/Navbar";
-import Faqs from "./Features/Faqs";
-import Footer from "./Footer";
-import Sec2Img from "../assets/landing-page-section-1-img.png";
-import EcommerceVendor1 from "../assets/ecommerce-vendor3d-1.png";
-import EcommerceVendor2 from "../assets/ecommerce-vendor3d-2.png";
-import LandingPortrait from "../assets/portrait-beautiful-african-woman-floral-coat.png";
-import Rectangle1 from "../assets/landing-page-rectangle-1.png";
-import Rectangle2 from "../assets/landing-page-rectangle-2.png";
-import PageShoppingBox from "../assets/landing-page-box-img.png";
-import HeroVisual from "../assets/landing-page-hero-visual.png";
+import Navbar from "../components/common/Navbar";
+import Faqs from "../components/landing/Faqs";
+import Footer from "../components/common/Footer";
+import Sec2Img from "../assets/images/landing-page-section-1-img.png";
+import EcommerceVendor1 from "../assets/images/ecommerce-vendor3d-1.png";
+import EcommerceVendor2 from "../assets/images/ecommerce-vendor3d-2.png";
+import LandingPortrait from "../assets/images/portrait-beautiful-african-woman-floral-coat.png";
+import Rectangle1 from "../assets/images/landing-page-rectangle-1.png";
+import Rectangle2 from "../assets/images/landing-page-rectangle-2.png";
+import PageShoppingBox from "../assets/images/landing-page-box-img.png";
+import HeroVisual from "../assets/images/landing-page-hero-visual.png";
 import {
   CirclePlus,
   SquareCheck,
@@ -19,7 +19,7 @@ import {
   Menu,
 } from "lucide-react";
 
-export default function LandingPage(){
+export default function LandingPage() {
   return (
     <div className="">
       <Navbar />
@@ -66,7 +66,7 @@ export default function LandingPage(){
                 <img
                   src={Rectangle1}
                   alt="Rectangle 1"
-                  className="absolute bottom-0 -right-30 w-100 hidden lg:block"
+                  className="absolute bottom-0 right-0 w-100 hidden lg:block"
                   loading="lazy"
                 />
               </div>
@@ -75,7 +75,7 @@ export default function LandingPage(){
                 <img
                   src={Rectangle2}
                   alt="vendor 2"
-                  className="absolute -bottom-110 right-0 w-100  hidden lg:block z-[1] "
+                  className="absolute -bottom-50 right-0 w-100  hidden lg:block z-[1] "
                   loading="lazy"
                 />
               </div>
@@ -120,11 +120,12 @@ export default function LandingPage(){
           <div className="mx-auto w-[85%] my-15">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
               {/* LEFT IMAGE */}
-              <div className="hidden lg:flex">
+              <div className="hidden lg:flex lg:w-1/2">
                 <img
                   src={Sec2Img}
                   alt="Section 2 image"
-                  className="w-100 h-auto"
+                  className="w-full h-auto"
+                  loading="lazy"
                 />
               </div>
 
@@ -268,7 +269,7 @@ export default function LandingPage(){
             {/* Glow Effects */}
             <div className="absolute inset-0">
               <div className="absolute -top-24 -left-24 w-80 h-80 bg-gray-300/20 blur-3xl rounded-full" />
-              <div className="absolute bottom-0 right-0 w-80 h-80 bg-cyan-300/20 blur-3xl rounded-full" />
+              <div className="absolute bottom-0 right-0 w-80 h-80 bg-cyan-300/20 blur-3xl rounded-full z-[-10] " />
             </div>
             <div className="w-[90%] mx-auto ">
               <div className="mx-auto text-center ">
@@ -494,7 +495,7 @@ export default function LandingPage(){
         </section>
 
         <section>
-          <div className="relative mt-20 py-12 px-7">
+          <div className="relative mt-20 py-12 px-7 overflow-hidden">
             {/* RADIAL GRADIENT */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#4B008C_0%,_#6D28D9_45%,_#7C3AED_100%)] z-[-1000]"></div>
 

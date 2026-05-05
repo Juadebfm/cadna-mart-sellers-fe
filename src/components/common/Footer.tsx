@@ -1,5 +1,5 @@
-import { useState,  } from "react";
-import Logo from "../assets/cadna-mart-footer-logo.png";
+import { useState } from "react";
+import Logo from "../../assets/images/cadna-mart-footer-logo.png";
 import {
   FaYoutube,
   FaTwitter,
@@ -7,7 +7,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 
-export default function Footer(){
+export default function Footer() {
   const [email, setEmail] = useState<string>("");
 
   return (
@@ -41,7 +41,7 @@ export default function Footer(){
                   onChange={(e) => {setEmail(e.target.value)}}
                   className="h-10 px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-auto"
                   required
-                />
+                />  
 
                 <button
                   type="submit"

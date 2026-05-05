@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/cadna-mart-main-logo.png";
+import logo from "../../assets/images/cadna-mart-main-logo.png";
 
-export default function Navbar(){
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
-  return (
+   return (
     <header className="w-full shadow-sm sticky top-0 z-50 bg-white">
       {/* Main Navbar */}
       <div className="bg-white">
@@ -134,7 +134,7 @@ export default function Navbar(){
                 </Link>
 
                 <Link
-                  to="/login"
+                  to="/signup"
                   className="rounded-md bg-gradient-to-r from-[#5B5BD6] to-[#7B61FF] px-5 py-2 text-sm font-medium text-white hover:opacity-90 transition flex items-center justify-center"
                   onClick={() => {setMobileOpen(false)}}
                 >

@@ -1,6 +1,6 @@
 import { Plus, X, Phone } from "lucide-react";
-import BubbleChat1 from "../../assets/bubble-chat-1.png";
-import BubbleChat2 from "../../assets/bubble-chat-2.png";
+import BubbleChat1 from "../../assets/images/bubble-chat-1.png";
+import BubbleChat2 from "../../assets/images/bubble-chat-2.png";
 import { useState } from "react";
 
 export default function Faqs() {
@@ -11,7 +11,7 @@ export default function Faqs() {
   const [open5, setOpen5] = useState<boolean>(false);
   const [open6, setOpen6] = useState<boolean>(false);
 
-  return (
+ return (
     <section id="faqs">
       <div className="mx-auto w-[95%] md:w-[85%] mt-10">
       <div className="text-center ">
