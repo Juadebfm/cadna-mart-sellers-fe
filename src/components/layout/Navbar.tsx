@@ -67,7 +67,7 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] group"
-                onClick={() => setMobileOpen(true)}
+                onClick={() => { setMobileOpen(true); }}
                 aria-label="Open menu"
               >
                 <span className="block w-6 h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 group-hover:w-5" />
@@ -81,7 +81,7 @@ export default function Navbar() {
 
       <MobileMenu
         isOpen={mobileOpen}
-        onClose={() => setMobileOpen(false)}
+        onClose={() => { setMobileOpen(false); }}
       />
     </header>
   );

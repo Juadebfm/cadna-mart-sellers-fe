@@ -46,7 +46,9 @@ function FaqItem({
 
 export default function Faqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+  const toggle = (i: number) => {
+    setOpenIndex(openIndex === i ? null : i);
+  };
   return (
     <section id="faqs">
       <div className="mx-auto w-[95%] md:w-[85%] mt-10">
@@ -66,7 +68,7 @@ export default function Faqs() {
               <FaqItem
                 question="When will I receive my payout?"
                 open={openIndex === 0}
-                onToggle={() => toggle(0)}
+                onToggle={() => { toggle(0); }}
               >
                 Payouts settle <span className="font-medium">T+1 business day</span> after
                 the buyer confirms the order as delivered, straight to the
@@ -78,7 +80,7 @@ export default function Faqs() {
               <FaqItem
                 question="Who handles delivery?"
                 open={openIndex === 1}
-                onToggle={() => toggle(1)}
+                onToggle={() => { toggle(1); }}
               >
                 Delivery is determined per-order by the option the buyer picks
                 at checkout. Each seller decides which of these to enable based
@@ -104,7 +106,7 @@ export default function Faqs() {
               <FaqItem
                 question="Is KYC required to register?"
                 open={openIndex === 2}
-                onToggle={() => toggle(2)}
+                onToggle={() => { toggle(2); }}
               >
                 Yes. To keep payouts safe and meet regulatory requirements,
                 every seller completes KYC during onboarding — typically a
@@ -116,7 +118,7 @@ export default function Faqs() {
               <FaqItem
                 question="How do I list my products?"
                 open={openIndex === 3}
-                onToggle={() => toggle(3)}
+                onToggle={() => { toggle(3); }}
               >
                 Listing is fully self-serve once your account is approved. Open
                 your dashboard, go to <span className="font-medium">Products → Add new</span>,
@@ -130,7 +132,7 @@ export default function Faqs() {
               <FaqItem
                 question="What happens if a buyer requests a return?"
                 open={openIndex === 4}
-                onToggle={() => toggle(4)}
+                onToggle={() => { toggle(4); }}
               >
                 Cadna runs a uniform return window across all listings, and the
                 seller fulfills the refund or exchange. The buyer opens a
@@ -143,7 +145,7 @@ export default function Faqs() {
               <FaqItem
                 question="How do I contact support?"
                 open={openIndex === 5}
-                onToggle={() => toggle(5)}
+                onToggle={() => { toggle(5); }}
               >
                 We're reachable on multiple channels — pick whichever is
                 fastest for you:

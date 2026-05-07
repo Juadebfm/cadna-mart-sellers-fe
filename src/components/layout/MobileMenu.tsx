@@ -19,15 +19,21 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     if (isOpen) {
       firstFrame = requestAnimationFrame(() => {
         setVisible(true);
-        secondFrame = requestAnimationFrame(() => setAnimating(true));
+        secondFrame = requestAnimationFrame(() => {
+          setAnimating(true);
+        });
       });
     } else {
-      firstFrame = requestAnimationFrame(() => setAnimating(false));
-      timer = setTimeout(() => setVisible(false), 300);
+      firstFrame = requestAnimationFrame(() => {
+        setAnimating(false);
+      });
+      timer = setTimeout(() => {
+        setVisible(false);
+      }, 300);
     }
 
     return () => {
-      if (firstFrame !== undefined) cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(firstFrame);
       if (secondFrame !== undefined) cancelAnimationFrame(secondFrame);
       if (timer !== undefined) clearTimeout(timer);
     };
