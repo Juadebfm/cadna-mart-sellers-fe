@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Info } from "lucide-react";
-import logo from "../../assets/images/cadna-mart-main-logo.png";
-import SignupImage from "../../assets/images/signup-email-image.png";
-import { validateEmail } from "../../core/utils/signupValidation";
+import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
+import SignupImage from "@/assets/images/signup/signup-email-image.png";
+import { validateEmail } from "@/schemas/signup";
 
 export default function SignupEmail() {
-  const [email, setEmail] = useState<string>("");
+  const location = useLocation();
+  const [email, setEmail] = useState<string>(
+    ((location.state as { email?: string } | null)?.email ?? ""),
+  );
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
@@ -21,11 +24,7 @@ export default function SignupEmail() {
       return;
     }
 
-    // Store email in localStorage or state management
-    localStorage.setItem("signupEmail", email);
-
-    // Navigate to signup details
-    void navigate("/signupdetails", { state: { email } });
+    void navigate("/signup/details", { state: { email } });
   };
 
   return (
@@ -45,7 +44,7 @@ export default function SignupEmail() {
         <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
           <div className=" text-center ">
             <h1 className="md:text-[30px] text-[20px] font-semibold text-[#5D5FEF]">
-              Start Seling on Cadna Mart
+              Start Selling on Cadna Mart
             </h1>
             <p className=" mt-2 text-[12px] md:text-[14px] text-[#696A7A]">
               Please provide your email address to create your seller account

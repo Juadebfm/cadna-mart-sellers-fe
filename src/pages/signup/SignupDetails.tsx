@@ -1,27 +1,36 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/cadna-mart-main-logo.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
 import { Check, CircleAlert } from "lucide-react";
-import type { SignupDetailsData } from "../../core/utils/signupValidation";
-import { validateSignupDetails } from "../../core/utils/signupValidation";
+import type { SignupDetailsData } from "@/schemas/signup";
+import { validateSignupDetails } from "@/schemas/signup";
 
 export default function SignupDetails() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [countryCode, setCountryCode] = useState("+234"); 
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [businessName, setBusinessName] = useState("");
-  const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState("");
-  const [businessType, setBusinessType] = useState("");
-  const [businessAddress, setBusinessAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [bankName, setBankName] = useState("");
-  const [accountName, setAccountName] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
+  const location = useLocation();
+  const flowState =
+    (location.state as {
+      email?: string;
+      details?: Partial<SignupDetailsData>;
+    } | null) ?? null;
+  const [firstName, setFirstName] = useState(flowState?.details?.firstName ?? "");
+  const [lastName, setLastName] = useState(flowState?.details?.lastName ?? "");
+  const [countryCode, setCountryCode] = useState(flowState?.details?.countryCode ?? "+234");
+  const [phoneNumber, setPhoneNumber] = useState(flowState?.details?.phoneNumber ?? "");
+  const [businessName, setBusinessName] = useState(flowState?.details?.businessName ?? "");
+  const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState(
+    flowState?.details?.businessRegistrationNumber ?? "",
+  );
+  const [businessType, setBusinessType] = useState(flowState?.details?.businessType ?? "");
+  const [businessAddress, setBusinessAddress] = useState(flowState?.details?.businessAddress ?? "");
+  const [city, setCity] = useState(flowState?.details?.city ?? "");
+  const [state, setState] = useState(flowState?.details?.state ?? "");
+  const [bankName, setBankName] = useState(flowState?.details?.bankName ?? "");
+  const [accountName, setAccountName] = useState(flowState?.details?.accountName ?? "");
+  const [accountNumber, setAccountNumber] = useState(flowState?.details?.accountNumber ?? "");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof SignupDetailsData, string>>>({});
   const navigate = useNavigate();
+  const email = flowState?.email ?? "";
 
   const detailsData: Partial<SignupDetailsData> = {
     firstName,
@@ -56,12 +65,11 @@ export default function SignupDetails() {
       return;
     }
 
-    localStorage.setItem("signupDetails", JSON.stringify(detailsData));
-    void navigate("/signuppassword", { state: { details: detailsData } });
+    void navigate("/signup/password", { state: { email, details: detailsData } });
   };
 
   const handleGoBack = () => {
-    void navigate("/signup");
+    void navigate("/signup", { state: { email } });
   };
 
   return (
@@ -183,7 +191,7 @@ export default function SignupDetails() {
                   setPhoneNumber(e.target.value);
                   if (errors.phoneNumber) setErrors({ ...errors, phoneNumber: "" });
                 }}
-                placeholder="Phone number (Optional)"
+                placeholder="Phone number"
                 className="flex-1 px-3 py-2 outline-none text-[#4C4D60] text-[14px]"
               />
             </div>

@@ -1,18 +1,25 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/cadna-mart-main-logo.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
 import { Eye, EyeOff, Check, Info } from "lucide-react";
+import type { SignupDetailsData } from "@/schemas/signup";
 import {
   validatePassword,
   validatePasswordMatch,
-} from "../../core/utils/signupValidation";
+} from "@/schemas/signup";
 
 export default function SignupPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
+  const flowState =
+    (location.state as {
+      email?: string;
+      details?: Partial<SignupDetailsData>;
+    } | null) ?? null;
 
   const rules = validatePassword(password);
 
@@ -34,15 +41,22 @@ export default function SignupPassword() {
       return;
     }
 
-    // Store password in localStorage
-    localStorage.setItem("signupPassword", password);
-
-    // Navigate to verify page
-    void navigate("/signupverify", { state: { password } });
+    void navigate("/signup/verify", {
+      state: {
+        email: flowState?.email,
+        details: flowState?.details,
+        password,
+      },
+    });
   };
 
   const handleGoBack = () => {
-    void navigate("/signupdetails");
+    void navigate("/signup/details", {
+      state: {
+        email: flowState?.email,
+        details: flowState?.details,
+      },
+    });
   };
 
   return (

@@ -1,135 +1,235 @@
 # Cadna Mart Sellers FE
 
-React + TypeScript frontend starter with a standards-first setup.
+Marketing site and seller-onboarding flow for Cadna Mart, built with React 19, TypeScript, Vite, and Tailwind CSS v4.
+
+---
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server runs on the default Vite port (usually `http://localhost:5173`).
+
+### Available scripts
+
+| Script             | What it does                                            |
+| ------------------ | ------------------------------------------------------- |
+| `npm run dev`      | Vite dev server with HMR                                |
+| `npm run typecheck`| `tsc -b` — strict type-check, no emit                   |
+| `npm run lint`     | ESLint, 0 warnings tolerated                            |
+| `npm run build`    | Production build (`dist/`)                              |
+| `npm run preview`  | Preview the production build locally                    |
+| `npm run validate` | typecheck + lint + build (also runs in pre-commit / CI) |
+
+---
 
 ## Stack
 
-- React 19
-- TypeScript (strict mode)
-- Vite
-- Tailwind CSS v4
-- ESLint (type-aware and strict)
-- Husky (local Git hooks)
-- GitHub Actions (PR quality gates)
+- **Framework:** React 19 + React Router v7 (lazy-loaded routes, nested layouts)
+- **Language:** TypeScript with `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`
+- **Build tool:** Vite 8
+- **Styling:** Tailwind CSS v4 (via `@tailwindcss/vite`)
+- **Icons:** `lucide-react` and `react-icons`
+- **Linting:** ESLint 9 (type-aware, `eslint-plugin-react-hooks`, `eslint-plugin-react-refresh`)
+- **Quality gates:** Husky pre-commit + GitHub Actions
 
-## Core Engineering Standards
+---
+
+## Project structure
+
+```
+src/
+├── pages/                          # Full-page route components
+│   ├── LandingPage.tsx             # Composes the landing sections
+│   └── signup/                     # Multi-step signup wizard
+│       ├── SignupEmail.tsx
+│       ├── SignupDetails.tsx
+│       ├── SignupPassword.tsx
+│       ├── SignupVerify.tsx
+│       ├── SignupComplete.tsx
+│       └── SignupApplicationStatus.tsx
+│
+├── components/
+│   ├── ui/                         # Reusable design-system primitives
+│   │   ├── Button.tsx              # Button + ButtonLink (primary / white / white-glow)
+│   │   └── SectionPill.tsx         # Uppercase pill above section headings
+│   │
+│   ├── layout/                     # Site-wide layout components
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+│   │
+│   └── landing/                    # Landing-page section components
+│       ├── Hero.tsx
+│       ├── HowItWorks.tsx
+│       ├── WhyCadnaMart.tsx
+│       ├── Pricing.tsx
+│       ├── BeforeYouStart.tsx
+│       ├── Faqs.tsx
+│       └── ReadyToStart.tsx
+│
+├── assets/images/
+│   ├── logos/                      # Header / footer brand logos
+│   ├── landing/                    # Landing-page imagery
+│   └── signup/                     # Signup-flow imagery
+│
+├── schemas/
+│   └── signup.ts                   # Form-validation logic for signup
+│
+├── App.tsx                         # Routes (lazy-loaded, nested under /signup)
+├── main.tsx                        # React entry point
+└── index.css                       # Tailwind import + globals
+```
+
+### Path alias
+
+Imports use `@/` instead of long relative paths. Configured in [`tsconfig.app.json`](./tsconfig.app.json) (`paths`) and [`vite.config.ts`](./vite.config.ts) (`resolve.alias`).
+
+```tsx
+import { ButtonLink } from "@/components/ui/Button";
+import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
+import { validateEmail } from "@/schemas/signup";
+```
+
+---
+
+## Architecture conventions
+
+### Component layers
+
+| Layer            | Lives in                | Responsibilities                                                                       |
+| ---------------- | ----------------------- | -------------------------------------------------------------------------------------- |
+| **UI primitive** | `components/ui/`        | Reusable presentation widgets. No page knowledge, no copy.                             |
+| **Layout**       | `components/layout/`    | Header, footer, page shells.                                                           |
+| **Section**      | `components/landing/`   | Larger landing-page chunks composed of UI primitives. Owns its copy and section markup.|
+| **Page**         | `pages/`                | Route entry. Composes layout + sections; almost no markup of its own.                  |
+
+A page should mostly *compose*. If a page grows past ~150 lines it's a signal to extract sections.
+
+### Reusing primitives
+
+Before adding a new button/pill/card, check `components/ui/`. The CTA button is parameterized via the `variant` prop:
+
+```tsx
+import { ButtonLink, Button } from "@/components/ui/Button";
+
+<ButtonLink to="/signup" variant="primary">Start Selling</ButtonLink>     // gradient
+<ButtonLink to="/signup" variant="white">Start Selling Today</ButtonLink> // white on dark
+<ButtonLink to="/signup" variant="white-glow">Start Selling</ButtonLink>  // hero variant w/ glow
+```
+
+Section pills follow the same pattern:
+
+```tsx
+import SectionPill from "@/components/ui/SectionPill";
+
+<SectionPill color="green">Why Cadna Mart</SectionPill>
+```
+
+### Naming
+
+- **Components & pages:** PascalCase (`Hero.tsx`, `SignupEmail.tsx`)
+- **Schemas, utilities, hooks:** camelCase (`signup.ts`, `useDebounce.ts`)
+- **Image assets:** kebab-case (`cadna-mart-main-logo.png`)
+
+---
+
+## Routing
+
+Routes are declared in [`src/App.tsx`](./src/App.tsx), lazy-loaded via `React.lazy()`, and wrapped in `<Suspense>`. The signup wizard is nested under `/signup/*`:
+
+| Route                | Component                  |
+| -------------------- | -------------------------- |
+| `/`                  | `LandingPage`              |
+| `/signup`            | `SignupEmail`              |
+| `/signup/details`    | `SignupDetails`            |
+| `/signup/password`   | `SignupPassword`           |
+| `/signup/verify`     | `SignupVerify`             |
+| `/signup/complete`   | `SignupComplete`           |
+| `/signup/status`     | `SignupApplicationStatus`  |
+
+To add a new route, declare a `lazy(() => import(...))` component and slot it into the routes tree.
+
+---
+
+## Engineering standards
 
 ### SOLID
-
-- **Single Responsibility**: keep components, hooks, services, and utilities focused on one reason to change.
-- **Open-Closed**: prefer extension through composition and clear interfaces over editing stable modules.
-- **Liskov Substitution**: preserve contract behavior when extending shared abstractions.
-- **Interface Segregation**: use small, task-specific types and interfaces.
-- **Dependency Inversion**: depend on abstractions and boundary contracts instead of concrete implementation details.
+- **Single Responsibility** — components, hooks, schemas, and utilities each have one reason to change.
+- **Open-Closed** — extend through composition (variants, props) before editing stable modules.
+- **Liskov Substitution** — preserve contract behavior when extending shared abstractions.
+- **Interface Segregation** — small, task-specific types and interfaces.
+- **Dependency Inversion** — depend on abstractions and boundary contracts, not concrete implementation details.
 
 ### DRY
+- Extract repeated styling into `components/ui/` primitives, not copy-pasted Tailwind class strings.
+- Repeated card / list shapes → data array + `.map()`, not 6 hand-written JSX blocks.
+- Centralize validation logic in `src/schemas/`.
 
-- Extract repeated logic into shared hooks/utilities.
-- Reuse type definitions instead of duplicating shapes.
-- Centralize constants and configuration.
+### Definition of Done
 
-### Definition of Done (Required)
-
-Every change must pass all quality gates:
+Every change must pass:
 
 - `npm run typecheck`
 - `npm run lint`
 - `npm run build`
 
-No code should be merged unless all checks pass locally and in CI.
+No PR is merged unless all three pass locally and in CI.
 
-## Architecture Baseline
+---
 
-```text
-src/
-  core/
-    constants/              # global constants and immutable config
-  App.tsx                   # top-level app shell
-  index.css                 # global styles + Tailwind import
-  main.tsx                  # app bootstrap
-```
+## Branching and delivery
 
-As the project grows, use this directional structure:
+Required flow: `samad → dev → main`
 
-```text
-src/
-  app/                      # app-level providers, router, layouts
-  core/                     # shared domain-neutral utilities, constants, types
-  features/                 # business features (self-contained)
-    <feature-name>/
-      components/
-      hooks/
-      services/
-      types/
-  shared/                   # generic UI primitives and cross-feature utilities
-```
+| Branch  | Push policy                                                       |
+| ------- | ----------------------------------------------------------------- |
+| `samad` | Samad pushes here directly.                                       |
+| `dev`   | No direct pushes — changes arrive only via Pull Request.          |
+| `main`  | Protected release branch; only the repository owner can merge.    |
 
-## Branching and Delivery Flow
+### A note on "pre-add"
 
-Required flow:
+Git has no native `pre-add` hook. Strict enforcement is layered as:
 
-`samad -> dev -> main`
+- `pre-commit` and `pre-push` Husky hooks (run `npm run validate`)
+- Required PR checks in GitHub Actions
 
-### Branch Rules
+---
 
-- `samad`: Samad pushes here directly.
-- `dev`: no direct pushes; changes arrive only through Pull Requests.
-- `main`: protected release branch; only repository owner can push/merge.
+## Quality automation
 
-### Important Note on "pre-add"
+### Husky hooks
 
-Git has no native `pre-add` hook. The closest strict enforcement is:
+- `.husky/pre-commit` → `npm run validate`
+- `.husky/pre-push` → `npm run validate`
 
-- `pre-commit` hook (configured)
-- `pre-push` hook (configured)
-- required PR checks in GitHub Actions (configured)
+### CI
 
-## Local Setup
+GitHub Actions workflow at `.github/workflows/pr-checks.yml`. Every PR into `dev` or `main` runs:
 
-1. Install dependencies:
-   `npm install`
-2. Start dev server:
-   `npm run dev`
+1. `npm ci`
+2. `npm run typecheck`
+3. `npm run lint`
+4. `npm run build`
 
-## Quality Automation
+### Branch protection (apply in GitHub Settings → Branches / Rulesets)
 
-### Husky Hooks
-
-- `.husky/pre-commit`: runs `npm run validate`
-- `.husky/pre-push`: runs `npm run validate`
-
-`npm run validate` runs: typecheck + lint + build.
-
-### GitHub Actions
-
-Workflow: `.github/workflows/pr-checks.yml`
-
-On every PR into `dev` or `main`, CI runs:
-
-- install dependencies (`npm ci`)
-- typecheck
-- lint
-- build
-
-## GitHub Settings to Enforce Permissions
-
-Apply these in **Settings -> Branches** (or **Rulesets**) on GitHub:
-
-1. **Rule for `main`**
+1. **`main`**
    - Require pull request before merging.
-   - Require status checks and select `PR Checks / Typecheck, Lint, Build`.
-   - Restrict who can push to only repository owner.
-2. **Rule for `dev`**
+   - Require status check `PR Checks / Typecheck, Lint, Build`.
+   - Restrict push to repository owner only.
+2. **`dev`**
    - Require pull request before merging.
-   - Require status checks and select `PR Checks / Typecheck, Lint, Build`.
+   - Require status check `PR Checks / Typecheck, Lint, Build`.
    - Disable direct pushes.
-3. **Rule for `samad`**
-   - Restrict push access to Samad (and owner if desired for recovery/admin).
+3. **`samad`**
+   - Restrict push access to Samad (and owner for recovery/admin).
+
+---
 
 ## Ownership
 
-`CODEOWNERS` is set so the repository owner is the default code owner:
-
-- `.github/CODEOWNERS`
-
-This helps enforce review discipline aligned with the branch strategy.
+[`CODEOWNERS`](./.github/CODEOWNERS) sets the repository owner as the default reviewer. This works alongside the branch-protection rules to enforce review discipline.

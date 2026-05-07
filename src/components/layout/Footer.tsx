@@ -1,5 +1,6 @@
+import type { SyntheticEvent } from "react";
 import { useState } from "react";
-import Logo from "../../assets/images/cadna-mart-footer-logo.png";
+import Logo from "@/assets/images/logos/cadna-mart-footer-logo.png";
 import {
   FaYoutube,
   FaTwitter,
@@ -9,17 +10,24 @@ import {
 
 export default function Footer() {
   const [email, setEmail] = useState<string>("");
+  const [feedback, setFeedback] = useState<string>("");
+
+  const handleSubscribe = (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFeedback("Thanks. Seller updates will be shared with this email.");
+    setEmail("");
+  };
 
   return (
     <footer className="w-full relative " id="support">
       {/* Newsletter Section */}
-      <div className="bg-[#F6F6FE]">
-        <div className="mx-auto w-[95%] md:w-[85%] py-12 px-3">
+      <div className="bg-[#F6F6FE] h-[300px] flex items-center">
+        <div className="mx-auto w-[95%] md:w-[85%] px-3">
           <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 text-center lg:text-left">
             
             {/* LEFT SIDE */}
             <div className="lg:w-1/2">
-              <h3 className="text-[32px] font-medium text-gray-400">
+              <h3 className="text-[32px] font-medium text-[#4C4D60]">
                 Stay in the <span className="text-purple-500">loop</span>
               </h3>
               <p className="text-gray-400 text-[16px]">
@@ -30,8 +38,8 @@ export default function Footer() {
             {/* RIGHT SIDE */}
             <div className="lg:w-1/2 flex justify-center lg:justify-end w-full">
               <form
-                
-                className="flex flex-col md:flex-row items-center gap-3 w-full"
+                onSubmit={handleSubscribe}
+                className="flex flex-col md:flex-row items-center gap-3 w-full lg:w-auto"
               >
                 <input
                   type="email"
@@ -39,19 +47,24 @@ export default function Footer() {
                   aria-label="Email address for newsletter"
                   value={email}
                   onChange={(e) => {setEmail(e.target.value)}}
-                  className="h-10 px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-auto"
+                  className="h-[48px] px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-[360px]"
                   required
-                />  
+                />
 
                 <button
                   type="submit"
-                  className="h-10 px-6 rounded-md bg-indigo-500 text-white whitespace-nowrap"
+                  className="inline-flex h-[48px] w-full md:w-[100px] items-center justify-center rounded-[8px] bg-indigo-500 text-[14px] font-normal text-white whitespace-nowrap transition hover:bg-indigo-600"
                 >
                   Subscribe
                 </button>
               </form>
             </div>
           </div>
+          {feedback && (
+            <p className="mt-4 text-center text-sm text-indigo-600" role="status">
+              {feedback}
+            </p>
+          )}
         </div>
       </div>
 
