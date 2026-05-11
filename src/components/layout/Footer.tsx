@@ -24,22 +24,22 @@ export default function Footer() {
       <div className="bg-[#F6F6FE] h-[300px] flex items-center">
         <div className="mx-auto w-[95%] md:w-[85%] px-3">
           <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 text-center lg:text-left">
-            
             {/* LEFT SIDE */}
             <div className="lg:w-1/2">
               <h3 className="text-[32px] font-medium text-[#4C4D60]">
                 Stay in the <span className="text-purple-500">loop</span>
               </h3>
               <p className="text-gray-400 text-[16px]">
-                Get seller tips, platform updates, and growth guides straight to your inbox.
+                Get seller tips, platform updates, and growth guides straight to
+                your inbox.
               </p>
             </div>
 
             {/* RIGHT SIDE */}
             <div className="lg:w-1/2 flex justify-center lg:justify-end w-full">
               <form
-                onSubmit={handleSubscribe}
-                className="flex flex-col md:flex-row items-center gap-3 w-full lg:w-auto"
+                 onSubmit={handleSubscribe}
+                className="flex flex-col md:flex-row items-center gap-3 w-full"
               >
                 <input
                   type="email"
@@ -47,13 +47,13 @@ export default function Footer() {
                   aria-label="Email address for newsletter"
                   value={email}
                   onChange={(e) => {setEmail(e.target.value)}}
-                  className="h-[48px] px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-[360px]"
+                  className="h-10 px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-auto"
                   required
                 />
 
                 <button
                   type="submit"
-                  className="inline-flex h-[48px] w-full md:w-[100px] items-center justify-center rounded-[8px] bg-indigo-500 text-[14px] font-normal text-white whitespace-nowrap transition hover:bg-indigo-600"
+                  className="h-10 px-6 rounded-md bg-indigo-500 text-white whitespace-nowrap"
                 >
                   Subscribe
                 </button>
@@ -72,7 +72,6 @@ export default function Footer() {
       <div className="bg-gray-900 text-gray-300 lg:text-left text-center px-6 lg:px-[100px] min-h-[400px] sm:h-[588px] flex flex-col py-10 sm:py-0">
         <div className="flex-1 flex items-center">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 w-full pb-8 sm:pb-0">
-
             {/* Logo + Description */}
             <div className="col-span-2 md:col-span-1">
               <img
@@ -93,10 +92,16 @@ export default function Footer() {
                 ABOUT US
               </h4>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
-                <li className="hover:text-white cursor-pointer">About Cadna Mart</li>
+                <li className="hover:text-white cursor-pointer">
+                  About Cadna Mart
+                </li>
                 <li className="hover:text-white cursor-pointer">Careers</li>
-                <li className="hover:text-white cursor-pointer">Privacy Policy</li>
-                <li className="hover:text-white cursor-pointer">Terms & Conditions</li>
+                <li className="hover:text-white cursor-pointer">
+                  Privacy Policy
+                </li>
+                <li className="hover:text-white cursor-pointer">
+                  Terms & Conditions
+                </li>
               </ul>
             </div>
 
@@ -108,8 +113,12 @@ export default function Footer() {
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
                 <li className="hover:text-white cursor-pointer">Help Center</li>
                 <li className="hover:text-white cursor-pointer">How to Shop</li>
-                <li className="hover:text-white cursor-pointer">Delivery Options</li>
-                <li className="hover:text-white cursor-pointer">Return Policy</li>
+                <li className="hover:text-white cursor-pointer">
+                  Delivery Options
+                </li>
+                <li className="hover:text-white cursor-pointer">
+                  Return Policy
+                </li>
               </ul>
             </div>
 
@@ -119,8 +128,12 @@ export default function Footer() {
                 GROW WITH CADNA
               </h4>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
-                <li className="hover:text-white cursor-pointer">Sell with Cadna</li>
-                <li className="hover:text-white cursor-pointer">Become an Investor</li>
+                <li className="hover:text-white cursor-pointer">
+                  Sell with Cadna
+                </li>
+                <li className="hover:text-white cursor-pointer">
+                  Become an Investor
+                </li>
               </ul>
             </div>
           </div>
@@ -131,10 +144,22 @@ export default function Footer() {
           <p>© 2026 CADNA MART. ALL RIGHTS RESERVED.</p>
 
           <div className="flex gap-6 items-center text-gray-300">
-            <FaYoutube size={22} className="cursor-pointer hover:text-white transition" />
-            <FaTwitter size={22} className="cursor-pointer hover:text-white transition" />
-            <FaLinkedinIn size={22} className="cursor-pointer hover:text-white transition" />
-            <FaFacebookF size={22} className="cursor-pointer hover:text-white transition" />
+            <FaYoutube
+              size={22}
+              className="cursor-pointer hover:text-white transition"
+            />
+            <FaTwitter
+              size={22}
+              className="cursor-pointer hover:text-white transition"
+            />
+            <FaLinkedinIn
+              size={22}
+              className="cursor-pointer hover:text-white transition"
+            />
+            <FaFacebookF
+              size={22}
+              className="cursor-pointer hover:text-white transition"
+            />
           </div>
         </div>
       </div>
