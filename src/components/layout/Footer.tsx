@@ -19,14 +19,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full relative " id="support">
+    <footer className="w-full relative" id="support">
       {/* Newsletter Section */}
-      <div className="bg-[#F6F6FE] h-[300px] flex items-center">
-        <div className="mx-auto w-[95%] md:w-[85%] px-3">
-          <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 text-center lg:text-left">
+      <div className="bg-[#F6F6FE]">
+        <div className="mx-auto w-[95%] md:w-[85%] py-12 px-3">
+          <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-6 text-center lg:text-left">
             {/* LEFT SIDE */}
             <div className="lg:w-1/2">
-              <h3 className="text-[32px] font-medium text-[#4C4D60]">
+              <h3 className="text-[32px] font-medium text-gray-400">
                 Stay in the <span className="text-purple-500">loop</span>
               </h3>
               <p className="text-gray-400 text-[16px]">
@@ -36,32 +36,37 @@ export default function Footer() {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="lg:w-1/2 flex justify-center lg:justify-end w-full">
+            <div className="w-full md:w-[60%] lg:w-1/2 flex justify-center lg:justify-end">
               <form
-                 onSubmit={handleSubscribe}
-                className="flex flex-col md:flex-row items-center gap-3 w-full"
+                onSubmit={handleSubscribe}
+                className="flex flex-col md:flex-row items-center gap-3 w-full md:justify-center lg:justify-end"
               >
                 <input
                   type="email"
                   placeholder="your@email.com"
                   aria-label="Email address for newsletter"
                   value={email}
-                  onChange={(e) => {setEmail(e.target.value)}}
-                  className="h-10 px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-auto"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  className="h-10 px-4 rounded-md bg-white border border-gray-200 outline-none w-full md:w-[300px]"
                   required
                 />
-
                 <button
                   type="submit"
-                  className="h-10 px-6 rounded-md bg-indigo-500 text-white whitespace-nowrap"
+                  className="h-10 px-6 rounded-md bg-indigo-500 text-white whitespace-nowrap w-full md:w-auto"
                 >
                   Subscribe
                 </button>
               </form>
             </div>
           </div>
+
           {feedback && (
-            <p className="mt-4 text-center text-sm text-indigo-600" role="status">
+            <p
+              className="mt-4 text-center text-sm text-indigo-600"
+              role="status"
+            >
               {feedback}
             </p>
           )}
@@ -142,7 +147,6 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-6 flex flex-col md:flex-row justify-between items-center text-sm sm:text-base text-gray-400 gap-4">
           <p>© 2026 CADNA MART. ALL RIGHTS RESERVED.</p>
-
           <div className="flex gap-6 items-center text-gray-300">
             <FaYoutube
               size={22}

@@ -4,6 +4,7 @@ import SignupEmail from "./pages/signup/SignupEmail";
 import SignupDetails from "./pages/signup/SignupDetails";
 import SignupPassword from "./pages/signup/SignupPassword";
 import SignupVerify from "./pages/signup/SignupVerify";
+import SignupApplicationStatus from "./pages/signup/SignupApplicationStatus";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/signupdetails" element={<SignupDetails />} />
       <Route path="/signuppassword" element={<SignupPassword />} />
       <Route path="/signupverify" element={<SignupVerify />} />
+      <Route path="/signupstatus" element={<SignupApplicationStatus />} />
     </Routes>
   );
 }

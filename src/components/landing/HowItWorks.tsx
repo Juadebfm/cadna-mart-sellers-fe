@@ -15,64 +15,59 @@ export default function HowItWorks() {
       <hr className="w-[70%] mx-auto my-10 border-t border-indigo-50" />
 
       <div className="mx-auto w-[85%] my-15">
-        <div className="flex flex-col items-center gap-8 lg:flex-row lg:justify-between lg:gap-[72px]">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+          {/* LEFT IMAGE */}
           <div className="hidden lg:flex lg:w-1/2">
             <img
               src={Sec2Img}
               alt="Section 2 image"
-              className="h-[650px] w-full object-contain"
+              className="w-full h-auto"
               loading="lazy"
             />
           </div>
 
+          {/* RIGHT CONTENT */}
           <div className="w-full lg:w-1/2">
-            <div className="w-full lg:w-[80%]">
+            <div>
               <SectionPill color="purple">HOW IT WORKS</SectionPill>
 
-              <p className="pt-3 text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-tight text-gray-600 lg:whitespace-nowrap">
+              <p className="pt-3 font-semibold text-3xl text-gray-600">
                 Start selling in{" "}
-                <span className="font-semibold text-purple-600">
-                  4 simple steps
-                </span>
+                <span className="text-purple-600">4 simple steps</span>
               </p>
 
-              <p className="pt-2 text-[20px] font-normal text-gray-500">
+              <p className="pt-2 text-gray-500 text-xs">
                 From sign-up to your first payout — the whole journey is
                 designed to be fast and straightforward.
               </p>
             </div>
 
-            <div className="relative mt-5 rounded-md border border-purple-100 bg-purple-50/50 px-5 py-7">
-              <ol className="space-y-8">
+            <div className="relative rounded-md border border-purple-100 bg-purple-50/50 px-5 py-7 mt-5">
+              {/* DOTTED LINE */}
+              <div className="absolute left-9 top-8 bottom-8 w-[2px] border-l-3 border-dashed border-purple-700" />
+
+              <ol className="space-y-6 relative">
                 {steps.map((step, i) => (
                   <li
                     key={step.label}
-                    className="grid min-h-[44px] lg:min-h-[55px] grid-cols-[44px_minmax(0,1fr)] lg:grid-cols-[55px_minmax(0,1fr)] items-center gap-x-4 lg:gap-x-6 text-[15px] sm:text-[17px] lg:text-[20px] font-medium leading-[1.3] text-gray-600"
+                    className="flex items-start gap-5 text-gray-600 font-medium relative z-10"
                   >
-                    <div className="relative flex h-[44px] w-[44px] lg:h-[55px] lg:w-[55px] items-center justify-center">
-                      <span
-                        className={`flex h-[44px] w-[44px] lg:h-[55px] lg:w-[55px] items-center justify-center rounded-full text-[16px] lg:text-[21px] font-medium ${
-                          step.filled
-                            ? "bg-purple-600 text-white"
-                            : "bg-purple-100 text-purple-500"
-                        }`}
-                      >
-                        {i + 1}
-                      </span>
-                      {i < steps.length - 1 && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute left-1/2 top-[44px] lg:top-[55px] h-6 lg:h-8 -translate-x-1/2 border-l-[3px] border-dashed border-purple-700/70"
-                        />
-                      )}
-                    </div>
-                    <span>{step.label}</span>
+                    <span
+                      className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-medium z-10 ${
+                        step.filled
+                          ? "bg-purple-600 text-white"
+                          : "bg-purple-100 text-purple-500"
+                      }`}
+                    >
+                      {i + 1}
+                    </span>
+                    {step.label}
                   </li>
                 ))}
               </ol>
             </div>
 
-            <ButtonLink to="/signup" variant="primary" className="mt-10">
+            <ButtonLink to="/signup" variant="primary" size="sm" className="mt-10 px-10">
               Start Selling
             </ButtonLink>
           </div>

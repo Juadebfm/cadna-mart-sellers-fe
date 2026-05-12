@@ -24,7 +24,7 @@ export default function SignupEmail() {
       return;
     }
 
-    void navigate("/signup/details", { state: { email } });
+    void navigate("/signupdetails", { state: { email } });
   };
 
   return (

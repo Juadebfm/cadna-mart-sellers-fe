@@ -39,21 +39,22 @@ export default function BeforeYouStart() {
     <section>
       <div className="mx-auto w-[95%] md:w-[85%] my-20">
         <SectionPill color="indigo">Before you start</SectionPill>
-        <div className="flex flex-col md:flex-row md:justify-between items-center w-full gap-5">
-          <h2 className="pt-3 font-medium text-[32px] sm:text-[40px] lg:text-[48px] text-gray-600">
-            What you need to{" "}
-            <span className="font-semibold text-indigo-600">register</span>
+
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start w-full gap-5">
+          <h2 className="pt-3 font-semibold text-3xl text-gray-600">
+            What you need to <span className="text-indigo-600">register</span>
           </h2>
           <ButtonLink
             to="/signup"
             variant="primary"
-            className="self-start lg:self-auto"
+            size="sm"
+            className="self-start px-10"
           >
             Start Selling
           </ButtonLink>
         </div>
 
-        <div className="mt-7 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
           {requirements.map(({ title, description }) => (
             <div
               key={title}

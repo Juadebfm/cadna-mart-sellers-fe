@@ -41,7 +41,7 @@ export default function SignupPassword() {
       return;
     }
 
-    void navigate("/signup/verify", {
+    void navigate("/signupverify", {
       state: {
         email: flowState?.email,
         details: flowState?.details,
@@ -51,7 +51,7 @@ export default function SignupPassword() {
   };
 
   const handleGoBack = () => {
-    void navigate("/signup/details", {
+    void navigate("/signupdetails", {
       state: {
         email: flowState?.email,
         details: flowState?.details,

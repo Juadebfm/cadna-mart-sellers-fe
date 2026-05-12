@@ -65,7 +65,7 @@ export default function SignupDetails() {
       return;
     }
 
-    void navigate("/signup/password", { state: { email, details: detailsData } });
+    void navigate("/signuppassword", { state: { email, details: detailsData } });
   };
 
   const handleGoBack = () => {

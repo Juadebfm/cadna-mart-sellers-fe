@@ -1,102 +1,150 @@
-import { CheckCircle2, CircleDashed, Clock3 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { CheckCircle2, Clock3, Mail, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
-
-interface SignupStatusState {
-  email?: string;
-}
-
-const statusItems = [
-  {
-    title: "Application submitted",
-    description: "Your seller onboarding details have been captured successfully.",
-    icon: CheckCircle2,
-    tone: "bg-green-100 text-green-600",
-  },
-  {
-    title: "Email verification completed",
-    description: "Your contact email is confirmed and ready for seller updates.",
-    icon: CheckCircle2,
-    tone: "bg-green-100 text-green-600",
-  },
-  {
-    title: "Review in progress",
-    description: "Cadna Mart is reviewing your registration and business information.",
-    icon: Clock3,
-    tone: "bg-amber-100 text-amber-600",
-  },
-  {
-    title: "Approval pending",
-    description: "You will receive the next update as soon as onboarding is completed.",
-    icon: CircleDashed,
-    tone: "bg-[#EFEFFD] text-[#5D5FEF]",
-  },
-];
+import circle from "@/assets/images/signup/Circle1.png";
+import circle2 from "@/assets/images/signup/Circle2.png";
 
 export default function SignupApplicationStatus() {
-  const location = useLocation();
-  const state = (location.state as SignupStatusState | null) ?? null;
+
 
   return (
-    <div className="min-h-screen bg-[#FAFAFF] px-4 py-10">
-      <div className="mx-auto max-w-3xl rounded-3xl border border-gray-100 bg-white p-8 shadow-lg">
-        <div className="text-center">
-          <h1 className="text-[30px] font-semibold text-[#4C4D60]">
-            Application status
-          </h1>
-          <p className="mt-3 text-[15px] leading-7 text-[#696A7A]">
-            {state?.email
-              ? `We are currently reviewing the seller setup for ${state.email}.`
-              : "We are currently reviewing your seller setup."}
-          </p>
-        </div>
-
-        <div className="mt-8 space-y-4">
-          {statusItems.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="flex items-start gap-4 rounded-2xl border border-gray-100 p-5"
-              >
-                <div className={`rounded-full p-3 ${item.tone}`}>
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-base font-semibold text-[#4C4D60]">
-                    {item.title}
-                  </h2>
-                  <p className="mt-1 text-sm leading-6 text-[#696A7A]">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
-            to="/"
-            className="flex-1 rounded-lg bg-gradient-to-r from-[#5B5BD6] to-[#7B61FF] px-5 py-3 text-center text-sm font-medium text-white transition hover:opacity-90"
-          >
-            Back to homepage
-          </Link>
-          <Link
-            to="/signup"
-            className="flex-1 rounded-lg border border-[#D7D7DB] px-5 py-3 text-center text-sm font-medium text-[#4C4D60] transition hover:bg-gray-50"
-          >
-            Start new application
-          </Link>
-        </div>
-
+    <div className="min-h-screen bg-[#FAFAFF]">
+      {/* NAVBAR */}
+      <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-100">
         <img
           src={logo}
           alt="Cadna Mart logo"
-          className="mx-auto mt-10 h-8 w-28 object-contain"
+          className="h-8 w-28 object-contain"
         />
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-[13px] text-[#E22B80] hover:text-red-700 transition"
+        >
+          <LogOut className="h-4 w-4" />
+          Logout
+        </Link>
       </div>
+
+      {/* CONTENT */}
+      <div className="flex items-center justify-center px-4 py-10">
+        <div className="w-full max-w-xl rounded-3xl border border-gray-100 bg-white shadow-lg overflow-hidden">
+          {/* DARK HEADER */}
+          <div className="relative bg-[#272864] px-6 py-7 overflow-hidden">
+            {/* Circles top right */}
+            <div className=" absolute  right-0 my-6 text-center lg:flex hidden">
+              <img src={circle} alt="circle " className="" loading="lazy" />
+            </div>
+            <div className=" absolute -top-10 right-0 my-6 text-center lg:flex hidden">
+              <img src={circle2} alt="circle " className="" loading="lazy" />
+            </div>
+
+            <div className="relative z-10">
+              <p className="text-[11px] uppercase tracking-widest text-white/60 font-medium">
+                Application Status
+              </p>
+              <div className="flex items-center gap-3 mt-2">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
+                  <Clock3 className="h-5 w-5 text-white" />
+                </div>
+                <h1 className="text-[24px] font-semibold text-white">
+                  Under Review
+                </h1>
+              </div>
+              <p className="mt-2 text-[13px] text-[#EFEFFD]">
+                Your application is being currently reviewed by our seller
+                verification team.
+              </p>
+            </div>
+          </div>
+
+          {/* REVIEW PROGRESS */}
+          <div className="px-8 py-6">
+            <h2 className="text-[14px] font-semibold text-[#5D5FEF] mb-5">
+              Review Progress
+            </h2>
+
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-4 top-5 bottom-5 w-[2px] bg-gray-100" />
+
+              <div className="space-y-6">
+                {/* Step 1 - Done */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5D5FEF] z-10">
+                    <CheckCircle2 className="h-5 w-5 text-white" />
+                  </div>
+                  <div className="pt-1">
+                    <h3 className="text-[14px] font-semibold text-[#4C4D60]">
+                      Application Submitted
+                    </h3>
+                    <p className="text-[13px] text-[#696A7A] mt-0.5">
+                      Your application has been received successfully.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 2 - In progress */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#CDCDFA] z-10">
+                    <CheckCircle2 className="h-5 w-5 text-[#5D5FEF]" />
+                  </div>
+                  <div className="pt-1">
+                    <h3 className="text-[14px] font-semibold text-[#BABAC1]">
+                      Under Review
+                    </h3>
+                    <p className="text-[13px] text-[#BABAC1] mt-0.5">
+                      Our team is verifying your business information and
+                      documents.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 3 - Pending */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFEFFD] z-10">
+                    <CheckCircle2 className="h-5 w-5 text-[#CDCDFA]" />
+                  </div>
+                  <div className="pt-1">
+                    <h3 className="text-[14px] font-semibold text-[#BABAC1]">
+                      Decision
+                    </h3>
+                    <p className="text-[13px] text-[#BABAC1] mt-0.5">
+                      You will be notified of the outcome within 24 – 72 hours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* NOTIFICATION BANNER */}
+            <div className="mt-7 rounded-xl border border-[#DAB0FF] bg-[#FAF5FF] px-4 py-4">
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 shrink-0 text-[#7D00E8] mt-0.5" />
+                <div>
+                  <p className="text-[18px] font-semibold text-[#7D00E8]">
+                    Notification will be sent to your mail
+                  </p>
+                  <p className="text-[12px] text-[#A133FF] mt-0.5">
+                    Check your spam/junk folder if you do not receive an email
+                    in 24 – 72 hours.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* NEED HELP */}
+      <p className="pb-6 text-center text-[16px] text-[#575757]">
+        Need help?{" "}
+        <Link
+          to="/"
+          className=" text-[#5D5FEF] underline underline-offset-2"
+        >
+          Contact Support
+        </Link>
+      </p>
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
-import { ButtonLink } from "@/components/ui/Button";
 import MobileMenu from "@/components/layout/MobileMenu";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   return (
-    <header className="w-full shadow-sm sticky top-0 z-50 bg-white">
+    <header className="w-full shadow-sm py-1 bg-white ">
       <div className="bg-white">
-        <div className="px-4 sm:px-6 lg:px-[120px]">
-          <div className="flex items-center justify-between h-[80px]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+
             {/* LEFT SECTION */}
             <div className="flex items-center gap-6">
               <Link to="/" className="flex items-center justify-center mb-2">
@@ -26,28 +26,16 @@ export default function Navbar() {
 
             {/* MIDDLE SECTION */}
             <div className="hidden lg:flex items-center gap-8">
-              <a
-                href="#hero"
-                className="text-[16px] text-[#4C4D60] hover:text-[#7B61FF]"
-              >
+              <a href="#hero" className="text-[12px] text-[#4C4D60] hover:text-[#7B61FF]">
                 How it works
               </a>
-              <a
-                href="#pricing"
-                className="text-[16px] text-[#4C4D60] hover:text-[#5D5FEF]"
-              >
+              <a href="#pricing" className="text-[12px] text-[#4C4D60] hover:text-[#5D5FEF]">
                 Pricing
               </a>
-              <a
-                href="#faqs"
-                className="text-[16px] text-[#4C4D60] hover:text-[#5D5FEF]"
-              >
+              <a href="#faqs" className="text-[12px] text-[#4C4D60] hover:text-[#5D5FEF]">
                 FAQs
               </a>
-              <a
-                href="#support"
-                className="text-[16px] text-[#4C4D60] hover:text-[#5D5FEF]"
-              >
+              <a href="#support" className="text-[12px] text-[#4C4D60] hover:text-[#5D5FEF]">
                 Support
               </a>
             </div>
@@ -55,24 +43,41 @@ export default function Navbar() {
             {/* RIGHT SECTION */}
             <div className="flex items-center gap-3">
               <div className="hidden lg:flex items-center gap-3">
-                <ButtonLink to="/signup" variant="outline" size="sm">
+                <Link
+                  to="/signup"
+                  className="rounded-md border border-[#D7D7DB] px-5 py-2 text-sm font-medium text-[#4C4D60] hover:bg-[#D7D7DB]/5 transition"
+                >
                   Sign in
-                </ButtonLink>
-
-                <ButtonLink to="/signup" variant="primary" size="sm">
+                </Link>
+                <Link
+                  to="/login"
+                  className="rounded-md bg-gradient-to-r from-[#5B5BD6] to-[#7B61FF] px-5 py-2 text-sm font-medium text-white hover:opacity-90 transition"
+                >
                   Start Selling
-                </ButtonLink>
+                </Link>
               </div>
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] group"
-                onClick={() => { setMobileOpen(true); }}
+                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+                onClick={() => { setMobileOpen(!mobileOpen); }}
                 aria-label="Open menu"
               >
-                <span className="block w-6 h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 group-hover:w-5" />
-                <span className="block w-4 h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 group-hover:w-6" />
-                <span className="block w-6 h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 group-hover:w-5" />
+                <span
+                  className={`block h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 ${
+                    mobileOpen ? "w-6 rotate-45 translate-y-[7px]" : "w-6"
+                  }`}
+                />
+                <span
+                  className={`block h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 ${
+                    mobileOpen ? "opacity-0 w-0" : "w-4"
+                  }`}
+                />
+                <span
+                  className={`block h-[2.5px] bg-gray-700 rounded-full transition-all duration-300 ${
+                    mobileOpen ? "w-6 -rotate-45 -translate-y-[7px]" : "w-6"
+                  }`}
+                />
               </button>
             </div>
           </div>
