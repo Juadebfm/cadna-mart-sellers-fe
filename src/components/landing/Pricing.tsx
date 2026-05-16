@@ -17,8 +17,11 @@ const feeRows: FeeRow[] = [
 
 export default function Pricing() {
   return (
-    <section id="pricing">
-      <div className="relative mx-auto w-[95%] lg:h-[773px] mt-[100px] py-16 rounded-2xl overflow-hidden">
+    <section>
+      <div
+        id="pricing"
+        className="relative mx-auto w-[95%] lg:h-[773px] mt-[100px] py-16 rounded-2xl overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B2D6E] via-[#3B3FA8] to-[#4A3FBF] z-[-1000]" />
 
         <div className="w-[90%] mx-auto">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/images/logos/cadna-mart-main-logo.png";
 import { ButtonLink } from "@/components/ui/Button";
@@ -6,10 +6,28 @@ import MobileMenu from "@/components/layout/MobileMenu";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="w-full shadow-sm sticky top-0 z-50 bg-white">
-      <div className="bg-white">
+    <header
+      className={`w-full sticky top-0 z-50 bg-white transition-shadow duration-300 ${
+        scrolled
+          ? "shadow-[0_6px_24px_-12px_rgba(15,15,40,0.18)]"
+          : "shadow-sm"
+      }`}
+    >
+      <div>
         <div className="px-4 sm:px-6 lg:px-[120px]">
           <div className="flex items-center justify-between h-[80px]">
             {/* LEFT SECTION */}

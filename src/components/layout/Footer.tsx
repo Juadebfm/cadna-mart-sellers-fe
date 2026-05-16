@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer className="w-full relative " id="support">
       {/* Newsletter Section */}
-      <div className="bg-[#F6F6FE] h-[300px] flex items-center">
+      <div className="bg-[#F6F6FE] min-h-[300px] py-10 flex items-center">
         <div className="mx-auto w-[95%] md:w-[85%] px-3">
           <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 text-center lg:text-left">
             
@@ -69,7 +69,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="bg-gray-900 text-gray-300 lg:text-left text-center px-6 lg:px-[100px] min-h-[400px] sm:h-[588px] flex flex-col py-10 sm:py-0">
+      <div className="bg-gray-900 text-gray-300 lg:text-left text-center px-6 lg:px-[100px] min-h-[400px] sm:min-h-[588px] flex flex-col py-10 sm:py-0">
         <div className="flex-1 flex items-center">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 w-full pb-8 sm:pb-0">
 

@@ -64,36 +64,36 @@ export default function SignupVerify() {
     <div className="min-h-screen bg-[#FAFAFF] px-4">
       <div className="flex flex-col items-center py-10">
         <div className="flex items-center justify-center">
-          <div className="flex w-20 justify-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
-              <Check size={18} />
+          <div className="flex w-12 sm:w-20 justify-center">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
+              <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-12 bg-[#5D5FEF]"></div>
-          <div className="flex w-20 justify-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
-              <Check size={18} />
+          <div className="h-[2px] w-6 sm:w-12 bg-[#5D5FEF]"></div>
+          <div className="flex w-12 sm:w-20 justify-center">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
+              <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-12 bg-[#5D5FEF]"></div>
-          <div className="flex w-20 justify-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
-              <Check size={18} />
+          <div className="h-[2px] w-6 sm:w-12 bg-[#5D5FEF]"></div>
+          <div className="flex w-12 sm:w-20 justify-center">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
+              <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-12 bg-[#CDCDFA]"></div>
-          <div className="flex w-20 justify-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
+          <div className="h-[2px] w-6 sm:w-12 bg-[#CDCDFA]"></div>
+          <div className="flex w-12 sm:w-20 justify-center">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white text-sm sm:text-base">
               4
             </div>
           </div>
         </div>
 
-        <div className="mt-2 flex justify-center text-xs text-[#696A7A]">
-          <span className="w-32 text-center">Email</span>
-          <span className="w-32 text-center">Details</span>
-          <span className="w-32 text-center">Password</span>
-          <span className="w-32 text-center">Verify</span>
+        <div className="mt-2 flex justify-center text-[10px] sm:text-xs text-[#696A7A]">
+          <span className="w-16 sm:w-32 text-center">Email</span>
+          <span className="w-16 sm:w-32 text-center">Details</span>
+          <span className="w-16 sm:w-32 text-center">Password</span>
+          <span className="w-16 sm:w-32 text-center">Verify</span>
         </div>
       </div>
 

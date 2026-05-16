@@ -12,6 +12,31 @@ export default function Hero() {
       <div className="relative mx-auto mt-6 lg:h-[700px] w-[95%] overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#44459A_0%,#2F2E71_58%,#28265F_100%)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(125,129,255,0.26),transparent_34%),radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.05),transparent_20%)]"></div>
 
+        {/* Mobile-only decorative background art */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden"
+          aria-hidden="true"
+        >
+          <img
+            src={Rectangle1}
+            alt=""
+            className="absolute -right-16 -top-12 h-[300px] w-auto max-w-none opacity-30"
+            loading="lazy"
+          />
+          <img
+            src={Rectangle2}
+            alt=""
+            className="absolute -bottom-16 -left-20 h-[280px] w-auto max-w-none opacity-25"
+            loading="lazy"
+          />
+          <img
+            src={HeroVisual}
+            alt=""
+            className="absolute -right-10 bottom-6 w-[260px] max-w-none opacity-15 sm:right-4 sm:w-[320px]"
+            loading="lazy"
+          />
+        </div>
+
         <div className="relative h-full">
           <div className="px-6 pb-10 pt-20 text-center sm:px-10 lg:absolute lg:left-[76px] lg:top-[186px] lg:w-[560px] lg:px-0 lg:pb-0 lg:pt-0 lg:text-left">
             <p className="inline-flex h-[38px] items-center rounded-xl border border-white/20 bg-white/8 px-4 text-[11px] font-medium uppercase tracking-[0.08em] text-white/90 backdrop-blur-sm lg:px-5">
