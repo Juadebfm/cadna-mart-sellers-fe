@@ -5,8 +5,6 @@ import circle from "@/assets/images/signup/Circle1.png";
 import circle2 from "@/assets/images/signup/Circle2.png";
 
 export default function SignupApplicationStatus() {
-
-
   return (
     <div className="min-h-screen bg-[#FAFAFF]">
       {/* NAVBAR */}
@@ -65,7 +63,7 @@ export default function SignupApplicationStatus() {
 
             <div className="relative">
               {/* Vertical line */}
-              <div className="absolute left-4 top-5 bottom-5 w-[2px] bg-gray-100" />
+              <div className="absolute left-4 top-5 bottom-5 w-0.5 bg-gray-100" />
 
               <div className="space-y-6">
                 {/* Step 1 - Done */}
@@ -138,10 +136,7 @@ export default function SignupApplicationStatus() {
       {/* NEED HELP */}
       <p className="pb-6 text-center text-[16px] text-[#575757]">
         Need help?{" "}
-        <Link
-          to="/"
-          className=" text-[#5D5FEF] underline underline-offset-2"
-        >
+        <Link to="/" className=" text-[#5D5FEF] underline underline-offset-2">
           Contact Support
         </Link>
       </p>

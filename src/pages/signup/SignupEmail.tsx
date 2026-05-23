@@ -8,7 +8,7 @@ import { validateEmail } from "@/schemas/signup";
 export default function SignupEmail() {
   const location = useLocation();
   const [email, setEmail] = useState<string>(
-    ((location.state as { email?: string } | null)?.email ?? ""),
+    (location.state as { email?: string } | null)?.email ?? "",
   );
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
@@ -103,7 +103,7 @@ export default function SignupEmail() {
         <img
           src={SignupImage}
           alt="Signup Email image"
-          className="w-[100%] "
+          className="w-full "
           loading="lazy"
         />
       </div>

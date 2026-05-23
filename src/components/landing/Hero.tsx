@@ -9,71 +9,105 @@ import HeroVisual from "@/assets/images/landing/landing-page-hero-visual.png";
 export default function Hero() {
   return (
     <section id="hero">
-      <div className="bg-[#272864] mx-auto w-[95%] mt-6 lg:py-20 py-20 rounded-2xl relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/30 via-transparent to-transparent"></div>
+      <div className="relative mx-auto mt-6 lg:h-[700px] w-[95%] overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#44459A_0%,#2F2E71_58%,#28265F_100%)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_78%,rgba(125,129,255,0.26),transparent_34%),radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.05),transparent_20%)]"></div>
 
-        {/* Left side */}
-        <div className="w-[90%] mx-auto relative ">
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <p className="inline-block px-5 py-2 text-sm font-medium text-white bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-              sell more. grow more
-            </p>
-            <p className="text-white text-[24px] font-medium md:text-[34px] lg:text-[45px] pt-3 lg:pt-0 leading-tight">
-              Grow your business{" "}
-              <span className="text-[#FFBF00] font-semibold">
-                without limits
-              </span>
-            </p>
-            <p className="text-white text-[12px] lg:text-[16px] pt-2">
-              Reach thousands of buyers across Nigeria. Manage your products,
-              orders, and payouts all from one clean dashboard. Zero listing
-              fees.
-            </p>
-            <ButtonLink to="/signup" variant="white-glow"  size="sm" className="mt-10 px-10">
-              Start Selling
-            </ButtonLink>
-          </div>
-        </div>
-
-        {/* Right side images */}
-        <div>
-          <img
-            src={LandingPortrait}
-            alt="Landing Portrait"
-            className="absolute bottom-0 right-9 w-100 hidden lg:block z-[100]"
-            loading="lazy"
-          />
+        {/* Mobile-only decorative background art */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden"
+          aria-hidden="true"
+        >
           <img
             src={Rectangle1}
-            alt="Rectangle 1"
-            className="absolute bottom-0 right-0 w-100 hidden lg:block"
+            alt=""
+            className="absolute -right-16 -top-12 h-[300px] w-auto max-w-none opacity-30"
             loading="lazy"
           />
           <img
             src={Rectangle2}
-            alt="Rectangle 2"
-            className="absolute -bottom-50 right-0 w-100 hidden lg:block z-[1]"
-            loading="lazy"
-          />
-          <img
-            src={PageShoppingBox}
-            alt="Page Shopping Box"
-            className="absolute bottom-0 right-38 w-100 hidden lg:block z-[1]"
+            alt=""
+            className="absolute -bottom-16 -left-20 h-[280px] w-auto max-w-none opacity-25"
             loading="lazy"
           />
           <img
             src={HeroVisual}
-            alt="Hero Visual"
-            className="absolute bottom-25 right-20 w-100 hidden lg:block"
+            alt=""
+            className="absolute -right-10 bottom-6 w-[260px] max-w-none opacity-15 sm:right-4 sm:w-[320px]"
             loading="lazy"
           />
+        </div>
 
-          {/* Secured payout card */}
-          <div className="absolute w-fit bottom-10 right-10 hidden lg:flex z-[100] gap-3 border border-gray-50 bg-white rounded-xl py-3 px-5">
-            <Shield className="text-indigo-500 bg-indigo-100 py-2 px-3 rounded-xl w-10 h-10" />
-            <div>
-              <h4 className="text-[#0E0E0E] text-[15px]">Secured payout</h4>
-              <p className="text-[#787878] text-[12px]">₦58,400 settled today</p>
+        <div className="relative h-full">
+          <div className="px-6 pb-10 pt-20 text-center sm:px-10 lg:absolute lg:left-[76px] lg:top-[186px] lg:w-[560px] lg:px-0 lg:pb-0 lg:pt-0 lg:text-left">
+            <p className="inline-flex h-[38px] items-center rounded-xl border border-white/20 bg-white/8 px-4 text-[11px] font-medium uppercase tracking-[0.08em] text-white/90 backdrop-blur-sm lg:px-5">
+              Sell more. Grow more
+            </p>
+
+            <h1 className="mt-4 max-w-[620px] leading-[0.98]">
+              <span className="block text-[32px] font-medium text-white sm:text-[44px] md:text-[52px] lg:whitespace-nowrap lg:text-[64px]">
+                Grow your business{" "}
+              </span>
+              <span className="block text-[32px] font-semibold text-[#FFBF2F] sm:text-[44px] md:text-[52px] lg:text-[64px]">
+                without limits
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-[560px] text-[16px] leading-[1.55] text-white/82 lg:text-[17px]">
+              Reach thousands of buyers across Nigeria. Manage your products,
+              orders, and payouts all from one clean dashboard. Zero listing
+              fees.
+            </p>
+
+            <ButtonLink to="/signup" variant="white-glow" className="mt-11">
+              Start Selling
+            </ButtonLink>
+          </div>
+
+          <div className="absolute inset-y-0 right-0 hidden w-[54%] lg:block">
+            <img
+              src={Rectangle1}
+              alt="Purple shape"
+              className="absolute -right-[8px] top-0 z-0 h-[520px] w-auto max-w-none"
+              loading="lazy"
+            />
+            <img
+              src={Rectangle2}
+              alt="Yellow shape"
+              className="absolute -right-[48px] bottom-0 z-20 h-[700px] w-auto max-w-none"
+              loading="lazy"
+            />
+            <img
+              src={HeroVisual}
+              alt="Seller dashboard preview"
+              className="absolute right-[101px] top-[192px] z-10 w-[534px] max-w-none"
+              loading="lazy"
+            />
+            <img
+              src={PageShoppingBox}
+              alt="Shopping boxes"
+              className="absolute bottom-0 right-[170px] z-[12] w-[650px] max-w-none"
+              loading="lazy"
+            />
+            <img
+              src={LandingPortrait}
+              alt="Seller portrait"
+              className="absolute bottom-0 right-[88px] z-[15] w-[600px] max-w-none"
+              loading="lazy"
+            />
+
+            <div className="absolute bottom-[70px] right-[50px] z-40 flex items-center gap-4 rounded-[18px] border border-[#ECEBFF] bg-white px-7 py-4 shadow-[0_18px_40px_rgba(12,12,48,0.18)]">
+              <div className="flex h-[50px] w-[50px] items-center justify-center rounded-[16px] bg-[#EEF1FF]">
+                <Shield className="h-6 w-6 text-[#5D5FEF]" />
+              </div>
+
+              <div>
+                <h4 className="text-[18px] font-medium text-[#141414]">
+                  Secured payout
+                </h4>
+                <p className="text-[14px] text-[#7A7A7A]">
+                  ₦58,400 settled today
+                </p>
+              </div>
             </div>
           </div>
         </div>

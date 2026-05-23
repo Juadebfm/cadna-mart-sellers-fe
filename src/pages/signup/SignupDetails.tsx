@@ -77,37 +77,37 @@ export default function SignupDetails() {
       <div className="flex flex-col items-center py-10">
         {/* Step indicators */}
         <div className="flex items-center justify-center">
-          <div className="w-20 flex justify-center">
-            <div className="w-10 h-10 rounded-full bg-[#5D5FEF] flex items-center justify-center text-white border-2 border-[#E5E7FF]">
-              <Check size={18} />
+          <div className="w-12 sm:w-20 flex justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#5D5FEF] flex items-center justify-center text-white border-2 border-[#E5E7FF]">
+              <Check size={16} />
             </div>
           </div>
-          <div className="w-12 h-[2px] bg-[#5D5FEF]"></div>
-          <div className="w-20 flex justify-center">
-            <div className="w-10 h-10 rounded-full bg-[#5D5FEF] flex items-center justify-center text-white border-2 border-[#E5E7FF]">
+          <div className="w-6 sm:w-12 h-[2px] bg-[#5D5FEF]"></div>
+          <div className="w-12 sm:w-20 flex justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#5D5FEF] flex items-center justify-center text-white border-2 border-[#E5E7FF] text-sm sm:text-base">
               2
             </div>
           </div>
-          <div className="w-12 h-[2px] bg-[#CDCDFA]"></div>
-          <div className="w-20 flex justify-center">
-            <div className="w-10 h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold">
+          <div className="w-6 sm:w-12 h-[2px] bg-[#CDCDFA]"></div>
+          <div className="w-12 sm:w-20 flex justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold text-sm sm:text-base">
               3
             </div>
           </div>
-          <div className="w-12 h-[2px] bg-[#CDCDFA]"></div>
-          <div className="w-20 flex justify-center">
-            <div className="w-10 h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold">
+          <div className="w-6 sm:w-12 h-[2px] bg-[#CDCDFA]"></div>
+          <div className="w-12 sm:w-20 flex justify-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold text-sm sm:text-base">
               4
             </div>
           </div>
         </div>
 
         {/* Step labels */}
-        <div className="flex justify-center mt-2 text-xs text-[#696A7A]">
-          <span className="w-32 text-center text-[#4C4D60]">Email</span>
-          <span className="w-32 text-center text-[#4C4D60]">Details</span>
-          <span className="w-32 text-center text-[#BABAC1]">Password</span>
-          <span className="w-32 text-center text-[#BABAC1]">Verify</span>
+        <div className="flex justify-center mt-2 text-[10px] sm:text-xs text-[#696A7A]">
+          <span className="w-16 sm:w-32 text-center text-[#4C4D60]">Email</span>
+          <span className="w-16 sm:w-32 text-center text-[#4C4D60]">Details</span>
+          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">Password</span>
+          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">Verify</span>
         </div>
       </div>
 

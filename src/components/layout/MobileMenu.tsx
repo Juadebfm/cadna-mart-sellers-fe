@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { X, Workflow, Tag, HelpCircle, LifeBuoy } from "lucide-react";
 
@@ -59,8 +60,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     { to: "#support", label: "Support", icon: LifeBuoy },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50">
+  return createPortal(
+    <div className="fixed inset-0 z-100">
       {/* Backdrop */}
       <div
         className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
@@ -93,7 +94,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <a
               key={to}
               href={to}
-              onClick={onClose}
+              onClick={(e) => {
+                e.preventDefault();
+                onClose();
+                // Wait for body overflow lock to release before scrolling
+                setTimeout(() => {
+                  const target = document.querySelector(to);
+                  target?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }, 320);
+              }}
               className="flex items-center gap-3 px-3 py-3 rounded-xl text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition"
             >
               <Icon size={20} />
@@ -107,19 +119,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <Link
             to="/signup"
             onClick={onClose}
-            className="flex items-center justify-center w-full h-[48px] rounded-[8px] border border-[#D7D7DB] bg-white text-[16px] font-normal text-[#4C4D60] hover:bg-[#D7D7DB]/10 transition"
+            className="flex items-center justify-center w-full h-12 rounded-lg border border-[#D7D7DB] bg-white text-[16px] font-normal text-[#4C4D60] hover:bg-[#D7D7DB]/10 transition"
           >
             Sign in
           </Link>
           <Link
             to="/signup"
             onClick={onClose}
-            className="flex items-center justify-center w-full h-[48px] rounded-[8px] bg-gradient-to-r from-[#5B5BD6] to-[#7B61FF] text-[16px] font-normal text-white hover:opacity-90 transition"
+            className="flex items-center justify-center w-full h-12 rounded-lg bg-linear-to-r from-[#5B5BD6] to-[#7B61FF] text-[16px] font-normal text-white hover:opacity-90 transition"
           >
             Start Selling
           </Link>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
