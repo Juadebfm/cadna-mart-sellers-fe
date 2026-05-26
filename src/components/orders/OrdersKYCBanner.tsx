@@ -1,10 +1,10 @@
-import { Shield, ArrowRight } from "lucide-react";
 
-interface KYCBannerProps {
+import { Shield, ArrowRight } from "lucide-react";
+interface Props {
   kycCompleted: boolean;
 }
 
-export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
+export default function OrdersKYCBanner({ kycCompleted }: Props) {
   if (kycCompleted) return null;
 
   return (
@@ -18,8 +18,7 @@ export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
             Complete your KYC to publish your store
           </p>
           <p className="text-[13px] text-[#696A7A] mt-0.5">
-            Your products are saved as drafts. Verify your identity to go live
-            and start receiving orders.
+            Your store is not yet live. Verify your identity to go live and start receiving orders.
           </p>
         </div>
       </div>
@@ -30,3 +29,6 @@ export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
     </div>
   );
 }
+
+
+

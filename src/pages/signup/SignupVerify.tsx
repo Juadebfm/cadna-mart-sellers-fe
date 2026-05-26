@@ -45,7 +45,7 @@ export default function SignupVerify() {
 
     setError("");
     setNotice("");
-    void navigate("/signup/complete", {
+    void navigate("/signupstatus", {
       state: { email: state?.email ?? "" },
     });
   };
@@ -69,19 +69,19 @@ export default function SignupVerify() {
               <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-6 sm:w-12 bg-[#5D5FEF]"></div>
+          <div className="h-0.5 w-6 sm:w-12 bg-[#5D5FEF]"></div>
           <div className="flex w-12 sm:w-20 justify-center">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
               <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-6 sm:w-12 bg-[#5D5FEF]"></div>
+          <div className="h-0.5 w-6 sm:w-12 bg-[#5D5FEF]"></div>
           <div className="flex w-12 sm:w-20 justify-center">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white">
               <Check size={16} />
             </div>
           </div>
-          <div className="h-[2px] w-6 sm:w-12 bg-[#CDCDFA]"></div>
+          <div className="h-0.5 w-6 sm:w-12 bg-[#CDCDFA]"></div>
           <div className="flex w-12 sm:w-20 justify-center">
             <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-[#E5E7FF] bg-[#5D5FEF] text-white text-sm sm:text-base">
               4
@@ -153,7 +153,7 @@ export default function SignupVerify() {
               disabled={!validation.isValid}
               className={`w-full rounded-lg py-3 text-sm font-medium text-white transition ${
                 validation.isValid
-                  ? "bg-gradient-to-r from-[#5B5BD6] to-[#7B61FF] hover:opacity-90"
+                  ? "bg-linear-to-r from-[#5B5BD6] to-[#7B61FF] hover:opacity-90"
                   : "cursor-not-allowed bg-gray-300"
               }`}
             >

@@ -18,8 +18,6 @@ const data = [
   { day: "Sun", sales: 21000 },
 ];
 
-const maxSales = Math.max(...data.map((d) => d.sales));
-
 //  path helper
 function roundedTopPath(
   x: number,
@@ -54,24 +52,11 @@ function CustomBar(props: CustomBarProps) {
   const y = props.y ?? 0;
   const width = props.width ?? 0;
   const height = props.height ?? 0;
-  const sales = (props.sales ?? 0) as number;
 
   const r = 4;
   const topHeight = Math.min(10, height);
-  const isHighest = sales === maxSales;
 
   if (height <= 0) return null;
-
-  // Highest bar — full solid dark purple
-  if (isHighest) {
-    return (
-      <path
-        d={roundedTopPath(x, y, width, height, r)}
-        fill="#5D5FEF"
-        style={{ outline: "none" }}
-      />
-    );
-  }
 
   return (
     <g style={{ outline: "none" }}>

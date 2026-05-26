@@ -1,7 +1,11 @@
 import StatCard from "../ui/StatCard";
 import { CircleDollarSign, ReceiptText, Package2, Wallet } from "lucide-react";
 
-export default function StatsRow() {
+interface StatsRowProps {
+  kycCompleted: boolean;
+}
+
+export default function StatsRow({ kycCompleted }: StatsRowProps) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
@@ -26,7 +30,7 @@ export default function StatsRow() {
       <StatCard
         label="Products"
         value="38"
-        subtext="All saved as drafts"
+        subtext={kycCompleted ? "38 live products" : "All saved as drafts"}
         subtextClassName="text-[#9899A3]"
         icon={<Package2 size={18} className="text-[#4C4D60]" />}
         iconBg="bg-[#F3F3F6]"
@@ -35,8 +39,8 @@ export default function StatsRow() {
       <StatCard
         label="Wallet Balance"
         value="₦58,400"
-        subtext="⚠ Hold — KYC pending"
-        subtextClassName="text-[#8900FF] font-medium"
+        subtext={kycCompleted ? "Available to withdraw" : "⚠ Hold — KYC pending"}
+        subtextClassName={kycCompleted ? "text-[#00AB72] font-medium" : "text-[#8900FF] font-medium"}
         icon={<Wallet size={18} className="text-[#8900FF]" />}
         iconBg="bg-[#FAF5FF]"
       />

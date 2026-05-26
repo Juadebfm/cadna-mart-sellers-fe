@@ -1,10 +1,9 @@
 import { Shield, ArrowRight } from "lucide-react";
-
-interface KYCBannerProps {
+interface Props {
   kycCompleted: boolean;
 }
 
-export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
+export default function ProductsKYCBanner({ kycCompleted }: Props) {
   if (kycCompleted) return null;
 
   return (
@@ -30,3 +29,4 @@ export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
     </div>
   );
 }
+

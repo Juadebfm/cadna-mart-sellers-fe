@@ -12,23 +12,41 @@ export default function SignupDetails() {
       email?: string;
       details?: Partial<SignupDetailsData>;
     } | null) ?? null;
-  const [firstName, setFirstName] = useState(flowState?.details?.firstName ?? "");
+  const [firstName, setFirstName] = useState(
+    flowState?.details?.firstName ?? "",
+  );
   const [lastName, setLastName] = useState(flowState?.details?.lastName ?? "");
-  const [countryCode, setCountryCode] = useState(flowState?.details?.countryCode ?? "+234");
-  const [phoneNumber, setPhoneNumber] = useState(flowState?.details?.phoneNumber ?? "");
-  const [businessName, setBusinessName] = useState(flowState?.details?.businessName ?? "");
+  const [countryCode, setCountryCode] = useState(
+    flowState?.details?.countryCode ?? "+234",
+  );
+  const [phoneNumber, setPhoneNumber] = useState(
+    flowState?.details?.phoneNumber ?? "",
+  );
+  const [businessName, setBusinessName] = useState(
+    flowState?.details?.businessName ?? "",
+  );
   const [businessRegistrationNumber, setBusinessRegistrationNumber] = useState(
     flowState?.details?.businessRegistrationNumber ?? "",
   );
-  const [businessType, setBusinessType] = useState(flowState?.details?.businessType ?? "");
-  const [businessAddress, setBusinessAddress] = useState(flowState?.details?.businessAddress ?? "");
+  const [businessType, setBusinessType] = useState(
+    flowState?.details?.businessType ?? "",
+  );
+  const [businessAddress, setBusinessAddress] = useState(
+    flowState?.details?.businessAddress ?? "",
+  );
   const [city, setCity] = useState(flowState?.details?.city ?? "");
   const [state, setState] = useState(flowState?.details?.state ?? "");
   const [bankName, setBankName] = useState(flowState?.details?.bankName ?? "");
-  const [accountName, setAccountName] = useState(flowState?.details?.accountName ?? "");
-  const [accountNumber, setAccountNumber] = useState(flowState?.details?.accountNumber ?? "");
+  const [accountName, setAccountName] = useState(
+    flowState?.details?.accountName ?? "",
+  );
+  const [accountNumber, setAccountNumber] = useState(
+    flowState?.details?.accountNumber ?? "",
+  );
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof SignupDetailsData, string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof SignupDetailsData, string>>
+  >({});
   const navigate = useNavigate();
   const email = flowState?.email ?? "";
 
@@ -65,7 +83,9 @@ export default function SignupDetails() {
       return;
     }
 
-    void navigate("/signuppassword", { state: { email, details: detailsData } });
+    void navigate("/signuppassword", {
+      state: { email, details: detailsData },
+    });
   };
 
   const handleGoBack = () => {
@@ -82,19 +102,19 @@ export default function SignupDetails() {
               <Check size={16} />
             </div>
           </div>
-          <div className="w-6 sm:w-12 h-[2px] bg-[#5D5FEF]"></div>
+          <div className="w-6 sm:w-12 h-0.5 bg-[#5D5FEF]"></div>
           <div className="w-12 sm:w-20 flex justify-center">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#5D5FEF] flex items-center justify-center text-white border-2 border-[#E5E7FF] text-sm sm:text-base">
               2
             </div>
           </div>
-          <div className="w-6 sm:w-12 h-[2px] bg-[#CDCDFA]"></div>
+          <div className="w-6 sm:w-12 h-0.5 bg-[#CDCDFA]"></div>
           <div className="w-12 sm:w-20 flex justify-center">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold text-sm sm:text-base">
               3
             </div>
           </div>
-          <div className="w-6 sm:w-12 h-[2px] bg-[#CDCDFA]"></div>
+          <div className="w-6 sm:w-12 h-0.5 bg-[#CDCDFA]"></div>
           <div className="w-12 sm:w-20 flex justify-center">
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#E5E7FF] flex items-center justify-center text-[#5D5FEF] font-semibold text-sm sm:text-base">
               4
@@ -105,9 +125,15 @@ export default function SignupDetails() {
         {/* Step labels */}
         <div className="flex justify-center mt-2 text-[10px] sm:text-xs text-[#696A7A]">
           <span className="w-16 sm:w-32 text-center text-[#4C4D60]">Email</span>
-          <span className="w-16 sm:w-32 text-center text-[#4C4D60]">Details</span>
-          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">Password</span>
-          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">Verify</span>
+          <span className="w-16 sm:w-32 text-center text-[#4C4D60]">
+            Details
+          </span>
+          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">
+            Password
+          </span>
+          <span className="w-16 sm:w-32 text-center text-[#BABAC1]">
+            Verify
+          </span>
         </div>
       </div>
 
@@ -116,17 +142,18 @@ export default function SignupDetails() {
           Tell us about you and your business
         </h2>
         <p className="mt-2 text-[12px] md:text-[14px] text-[#696A7A]">
-          Kindly provide your personal and business information. This information
-          helps us set up your seller account correctly
+          Kindly provide your personal and business information. This
+          information helps us set up your seller account correctly
         </p>
       </div>
 
       <div>
         <form className="space-y-6" onSubmit={handleSubmit}>
-
           {/* Personal Information */}
           <div className="lg:w-[70%] sm:w-[85%] w-[95%] bg-white rounded-2xl shadow-md sm:p-8 p-4 border border-gray-100 mx-auto text-[14px]">
-            <h2 className="mb-4 font-semibold text-[#4C4D60]">Personal Information</h2>
+            <h2 className="mb-4 font-semibold text-[#4C4D60]">
+              Personal Information
+            </h2>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
@@ -136,7 +163,8 @@ export default function SignupDetails() {
                   value={firstName}
                   onChange={(e) => {
                     setFirstName(e.target.value);
-                    if (errors.firstName) setErrors({ ...errors, firstName: "" });
+                    if (errors.firstName)
+                      setErrors({ ...errors, firstName: "" });
                   }}
                   placeholder="First Name"
                   className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] ${
@@ -144,7 +172,9 @@ export default function SignupDetails() {
                   }`}
                 />
                 {errors.firstName && (
-                  <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.firstName}
+                  </p>
                 )}
               </div>
 
@@ -169,12 +199,16 @@ export default function SignupDetails() {
             </div>
 
             {/* Phone */}
-            <div className={`flex w-full border rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 mt-5 ${
-              errors.phoneNumber ? "border-red-500" : "border-gray-300"
-            }`}>
+            <div
+              className={`flex w-full border rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 mt-5 ${
+                errors.phoneNumber ? "border-red-500" : "border-gray-300"
+              }`}
+            >
               <select
                 value={countryCode}
-                onChange={(e) => {setCountryCode(e.target.value)}}
+                onChange={(e) => {
+                  setCountryCode(e.target.value);
+                }}
                 className="px-3 bg-white outline-none text-[#4C4D60] text-[14px]"
               >
                 <option value="+234">+234</option>
@@ -189,7 +223,8 @@ export default function SignupDetails() {
                 value={phoneNumber}
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
-                  if (errors.phoneNumber) setErrors({ ...errors, phoneNumber: "" });
+                  if (errors.phoneNumber)
+                    setErrors({ ...errors, phoneNumber: "" });
                 }}
                 placeholder="Phone number"
                 className="flex-1 px-3 py-2 outline-none text-[#4C4D60] text-[14px]"
@@ -202,7 +237,9 @@ export default function SignupDetails() {
 
           {/* Business Details */}
           <div className="lg:w-[70%] sm:w-[85%] w-[95%] bg-white rounded-2xl shadow-md sm:p-8 p-4 border border-gray-100 mx-auto text-[14px]">
-            <h2 className="mb-4 font-semibold text-[#4C4D60]">Business Details</h2>
+            <h2 className="mb-4 font-semibold text-[#4C4D60]">
+              Business Details
+            </h2>
 
             <input
               id="businessName"
@@ -210,7 +247,8 @@ export default function SignupDetails() {
               value={businessName}
               onChange={(e) => {
                 setBusinessName(e.target.value);
-                if (errors.businessName) setErrors({ ...errors, businessName: "" });
+                if (errors.businessName)
+                  setErrors({ ...errors, businessName: "" });
               }}
               placeholder="Business Name"
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] ${
@@ -225,7 +263,9 @@ export default function SignupDetails() {
               id="businessRegistrationNumber"
               type="text"
               value={businessRegistrationNumber}
-              onChange={(e) => {setBusinessRegistrationNumber(e.target.value)}}
+              onChange={(e) => {
+                setBusinessRegistrationNumber(e.target.value);
+              }}
               placeholder="Business Registration / CAC Number (Optional)"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] mt-5"
             />
@@ -237,7 +277,8 @@ export default function SignupDetails() {
                 value={businessType}
                 onChange={(e) => {
                   setBusinessType(e.target.value);
-                  if (errors.businessType) setErrors({ ...errors, businessType: "" });
+                  if (errors.businessType)
+                    setErrors({ ...errors, businessType: "" });
                 }}
                 placeholder="Business Type (e.g. Retail, Wholesale)"
                 className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] ${
@@ -256,7 +297,8 @@ export default function SignupDetails() {
               value={businessAddress}
               onChange={(e) => {
                 setBusinessAddress(e.target.value);
-                if (errors.businessAddress) setErrors({ ...errors, businessAddress: "" });
+                if (errors.businessAddress)
+                  setErrors({ ...errors, businessAddress: "" });
               }}
               placeholder="Business Address"
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] mt-5 ${
@@ -264,7 +306,9 @@ export default function SignupDetails() {
               }`}
             />
             {errors.businessAddress && (
-              <p className="text-red-500 text-sm mt-1">{errors.businessAddress}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.businessAddress}
+              </p>
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 mt-5">
@@ -335,7 +379,8 @@ export default function SignupDetails() {
               value={accountName}
               onChange={(e) => {
                 setAccountName(e.target.value);
-                if (errors.accountName) setErrors({ ...errors, accountName: "" });
+                if (errors.accountName)
+                  setErrors({ ...errors, accountName: "" });
               }}
               placeholder="Account Name"
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] mt-5 ${
@@ -352,7 +397,8 @@ export default function SignupDetails() {
               value={accountNumber}
               onChange={(e) => {
                 setAccountNumber(e.target.value);
-                if (errors.accountNumber) setErrors({ ...errors, accountNumber: "" });
+                if (errors.accountNumber)
+                  setErrors({ ...errors, accountNumber: "" });
               }}
               placeholder="Account Number"
               className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-[#4C4D60] text-[14px] mt-5 ${
@@ -360,26 +406,36 @@ export default function SignupDetails() {
               }`}
             />
             {errors.accountNumber && (
-              <p className="text-red-500 text-sm mt-1">{errors.accountNumber}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.accountNumber}
+              </p>
             )}
           </div>
 
           {/* Legal Agreement */}
           <div className="lg:w-[70%] sm:w-[85%] w-[95%] bg-white rounded-2xl shadow-md sm:p-8 p-4 border border-gray-100 mx-auto text-[14px]">
-            <h2 className="mb-4 font-semibold text-[#4C4D60]">Legal Agreement</h2>
+            <h2 className="mb-4 font-semibold text-[#4C4D60]">
+              Legal Agreement
+            </h2>
             <div className="w-full px-3 py-2 bg-[#F5F5FF] border border-[#CDCDFA] rounded-lg text-[#4C4D60] mt-2">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={agreedToTerms}
-                  onChange={(e) => {setAgreedToTerms(e.target.checked)}}
+                  onChange={(e) => {
+                    setAgreedToTerms(e.target.checked);
+                  }}
                   className="w-4 h-4 border-gray-300 rounded"
                 />
                 <span className="text-[#696A7A]">
                   I have read and agree to the{" "}
-                  <span className="text-[#5D5FEF] cursor-pointer">Terms of Use</span>{" "}
+                  <span className="text-[#5D5FEF] cursor-pointer">
+                    Terms of Use
+                  </span>{" "}
                   and{" "}
-                  <span className="text-[#5D5FEF] cursor-pointer">Privacy Policy</span>{" "}
+                  <span className="text-[#5D5FEF] cursor-pointer">
+                    Privacy Policy
+                  </span>{" "}
                   of Cadna Mart.
                 </span>
               </label>
