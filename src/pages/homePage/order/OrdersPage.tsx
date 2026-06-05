@@ -1,7 +1,7 @@
 import { useState } from "react";
-import OrdersKYCBanner from "@/components/orders/OrdersKYCBanner";
-import OrdersFilters from "@/components/orders/OrdersFilters";
-import OrdersTable from "@/components/orders/OrdersTable";
+import OrdersKYCBanner from "@/components/orders/orderspage/OrdersKYCBanner";
+import OrdersFilters from "@/components/orders/orderspage/OrdersFilters";
+import OrdersTable from "@/components/orders/orderspage/OrdersTable";
 import type { Order } from "@/core/types/Order";
 
 const ALL_ORDERS: Order[] = [
@@ -10,7 +10,7 @@ const ALL_ORDERS: Order[] = [
     product: "Baby Crib Set",
     customer: "Funmi A.",
     amount: "₦24,500",
-    status: "Dispatched",
+    status: "Processing",
     delivery: "Own courier",
     date: "Apr 11",
   },
@@ -28,7 +28,7 @@ const ALL_ORDERS: Order[] = [
     product: "Baby Monitor (Set)",
     customer: "Tolu B.",
     amount: "₦52,000",
-    status: "Confirmed",
+    status: "Dispatched",
     delivery: "Cadna Mart",
     date: "Apr 10",
   },
@@ -46,7 +46,7 @@ const ALL_ORDERS: Order[] = [
     product: "Cosmetic Bundle",
     customer: "Ngozi C.",
     amount: "₦14,750",
-    status: "Dispatched",
+    status: "Cancelled",
     delivery: "Own courier",
     date: "Apr 9",
   },

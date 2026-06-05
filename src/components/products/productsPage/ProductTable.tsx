@@ -1,31 +1,35 @@
+import { Link, useNavigate } from "react-router-dom";
+import type { Product } from "@/core/types/Product";
+import ProductImage from "./ProductImages";
+import ProductStatusBadge from "./ProductStatusBadge";
+import ActionMenu from "./ActionMenu";
 import { Package2 } from "lucide-react";
-import type { Order } from "@/core/types/Order";
-import OrderStatusBadge from "./OrderStatusBadge";
-import { Link } from "react-router-dom";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 8;
 
 interface Props {
-  orders: Order[];
+  products: Product[];
   currentPage: number;
   onPageChange: (page: number) => void;
 }
 
-export default function OrdersTable({
-  orders,
+export default function ProductsTable({
+  products,
   currentPage,
   onPageChange,
 }: Props) {
-  const hasNoOrdersAtAll = orders.length === 0;
-  const totalPages = Math.max(1, Math.ceil(orders.length / ITEMS_PER_PAGE));
+  const navigate = useNavigate();
+
+  const hasNoProductsAtAll = products.length === 0;
+  const totalPages = Math.max(1, Math.ceil(products.length / ITEMS_PER_PAGE));
   const safePage = Math.min(currentPage, totalPages);
-  const paginated = orders.slice(
+  const paginated = products.slice(
     (safePage - 1) * ITEMS_PER_PAGE,
     safePage * ITEMS_PER_PAGE,
   );
 
-  const start = orders.length === 0 ? 0 : (safePage - 1) * ITEMS_PER_PAGE + 1;
-  const end = Math.min(safePage * ITEMS_PER_PAGE, orders.length);
+  const start = products.length === 0 ? 0 : (safePage - 1) * ITEMS_PER_PAGE + 1;
+  const end = Math.min(safePage * ITEMS_PER_PAGE, products.length);
 
   const pageNumbers = (): (number | "...")[] => {
     const nums: (number | "...")[] = [];
@@ -43,28 +47,25 @@ export default function OrdersTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left text-[10px] font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
-              <th className="px-5 py-4">Order ID</th>
               <th className="px-5 py-4">Product</th>
-              <th className="px-5 py-4 hidden md:table-cell">Customer</th>
-              <th className="px-5 py-4">Amount</th>
-              <th className="px-5 py-4">Status</th>
-              <th className="px-5 py-4 hidden lg:table-cell">Delivery</th>
-              <th className="px-5 py-4 hidden lg:table-cell">Date</th>
-              <th className="px-5 py-4">Action</th>
+              <th className="px-5 py-4">Price ↕</th>
+              <th className="px-5 py-4 hidden md:table-cell">Category ↕</th>
+              <th className="px-5 py-4 hidden md:table-cell">Stock ↕</th>
+              <th className="px-5 py-4 hidden lg:table-cell">Sales</th>
+              <th className="px-5 py-4"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {/* Empty — no orders at all */}
-            {hasNoOrdersAtAll ? (
+            {/* Empty — no products at all */}
+            {hasNoProductsAtAll ? (
               <tr>
-                <td colSpan={8} className="px-5 py-16 text-center">
+                <td colSpan={6} className="px-5 py-16 text-center">
                   <div className="flex flex-col items-center gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center">
-                    <Package2 size={28} stroke="#9CA3AF" strokeWidth={1.5} />
-
+                      <Package2 size={28} stroke="#9CA3AF" strokeWidth={1.5} />
                     </div>
                     <p className="text-[14px] font-medium text-gray-500">
-                      No orders to display!
+                      No products to display!
                     </p>
                     <Link
                       to="/seller"
@@ -76,53 +77,53 @@ export default function OrdersTable({
                 </td>
               </tr>
             ) : paginated.length === 0 ? (
-              /* Filters returned nothing */
               <tr>
                 <td
-                  colSpan={8}
+                  colSpan={6}
                   className="px-5 py-12 text-center text-gray-400 text-sm"
                 >
-                  No orders match your filters.
+                  No products match your filters.
                 </td>
               </tr>
             ) : (
-              paginated.map((order) => (
+              paginated.map((product) => (
                 <tr
-                  key={order.id}
-                  className="hover:bg-gray-50 transition-colors"
+                  key={product.id}
+                  onClick={() => {
+                    void navigate(`/seller/products/${product.id}/view`);
+                  }}
+                  className="hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  <td className="px-5 py-4 font-semibold text-purple-600 whitespace-nowrap">
-                    {order.id}
-                  </td>
-                  <td className="px-5 py-4 text-gray-800">{order.product}</td>
-                  <td className="px-5 py-4 text-gray-500 hidden md:table-cell">
-                    {order.customer}
-                  </td>
-                  <td className="px-5 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {order.amount}
-                  </td>
                   <td className="px-5 py-4">
-                    <OrderStatusBadge status={order.status} />
+                    <div className="flex items-center gap-3">
+                      <ProductImage name={product.name} />
+                      <div className="min-w-0">
+                        <p className="text-gray-800 font-medium leading-snug line-clamp-1 text-sm">
+                          {product.name}
+                        </p>
+                        <ProductStatusBadge status={product.status} />
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-gray-700 font-medium whitespace-nowrap">
+                    {product.price}
+                  </td>
+                  <td className="px-5 py-4 text-gray-500 hidden md:table-cell">
+                    {product.category}
+                  </td>
+                  <td className="px-5 py-4 text-gray-500 hidden md:table-cell">
+                    {product.stock}
                   </td>
                   <td className="px-5 py-4 text-gray-500 hidden lg:table-cell">
-                    {order.delivery}
+                    {product.sales}
                   </td>
-                  <td className="px-5 py-4 text-gray-400 hidden lg:table-cell">
-                    {order.date}
-                  </td>
-                  <td className="px-5 py-4">
-                    <button className="text-gray-300 hover:text-gray-600 transition-colors p-1 rounded-md hover:bg-gray-100">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <circle cx="12" cy="5" r="1.5" />
-                        <circle cx="12" cy="12" r="1.5" />
-                        <circle cx="12" cy="19" r="1.5" />
-                      </svg>
-                    </button>
+                  <td
+                    className="px-5 py-4"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <ActionMenu productId={product.id} />
                   </td>
                 </tr>
               ))
@@ -131,11 +132,11 @@ export default function OrdersTable({
         </table>
       </div>
 
-      {/* Pagination — hide when truly empty */}
-      {!hasNoOrdersAtAll && (
+      {/* Pagination */}
+      {!hasNoProductsAtAll && (
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-5 py-4 border-t border-gray-100">
           <p className="text-xs text-gray-400 text-center sm:text-left">
-            Showing {start}–{end} of {orders.length} orders
+            Showing {start}–{end} of {products.length} products
           </p>
           <div className="flex items-center justify-center gap-1 flex-wrap">
             <button

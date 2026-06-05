@@ -70,10 +70,13 @@ export default function OrdersFilters({
 
       {/* Row 2 — Dropdowns */}
       <div className="flex flex-wrap items-center gap-2">
-        <select className="flex-1 min-w-[120px] px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-100">
-          <option>Last 30 Days</option>
+        <select className="flex-1 min-w-30 px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-100">
+          <option>This week</option>
           <option>Last 7 Days</option>
+          <option>Last 30 Days</option>
+          <option>Last 60 Days</option>
           <option>Last 90 Days</option>
+          <option>Custom data range</option>
         </select>
 
         <select
@@ -81,7 +84,7 @@ export default function OrdersFilters({
           onChange={(e) => {
             onStatusChange(e.target.value);
           }}
-          className="flex-1 min-w-[120px] px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-100"
+          className="flex-1 min-w-30 px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-100"
         >
           {STATUS_OPTIONS.map((s) => (
             <option key={s}>{s}</option>

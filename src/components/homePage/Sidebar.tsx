@@ -175,7 +175,7 @@ function SidebarContent({ mode, onClose }: SidebarContentProps) {
   );
 }
 
-// ── animated hamburger ───────────────────────────────────────
+// animated hamburger
 interface HamburgerButtonProps {
   open: boolean;
   onClick: () => void;
@@ -210,7 +210,7 @@ function HamburgerButton({ open, onClick }: HamburgerButtonProps) {
   );
 }
 
-// ── main export ──────────────────────────────────────────────
+// ── main export
 export default function Sidebar() {
   const { isTablet, isDesktop } = useBreakpoint();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);

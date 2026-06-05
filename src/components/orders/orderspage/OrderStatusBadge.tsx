@@ -5,6 +5,8 @@ const STATUS_STYLES: Record<OrderStatus, string> = {
   Packed: "bg-purple-50 text-purple-700",
   Confirmed: "bg-amber-50 text-amber-700",
   Delivered: "bg-green-100 text-green-700",
+  Processing: "bg-yellow-50 text-yellow-700",
+  Cancelled: "bg-red-50 text-red-700",
 };
 
 export default function OrderStatusBadge({ status }: { status: OrderStatus }) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ProductsKYCBanner from "@/components/products/ProductKycBanner";
-import ProductFilters from "@/components/products/ProductFilters";
-import ProductTable from "@/components/products/ProductTable";
+import ProductsKYCBanner from "@/components/products/productsPage/ProductKycBanner";
+import ProductFilters from "@/components/products/productsPage/ProductFilters";
+import ProductTable from "@/components/products/productsPage/ProductTable";
 import type { Product } from "@/core/types/Product";
 
 const ALL_PRODUCTS: Product[] = [
