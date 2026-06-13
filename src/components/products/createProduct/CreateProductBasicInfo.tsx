@@ -84,6 +84,7 @@ export default function CreateProductBasicInfo({
             <input
               type="number"
               placeholder="₦ 0.00"
+              min="0"
               value={sellingPrice}
               onChange={(e) => {
                 onSellingPriceChange(e.target.value);
@@ -99,6 +100,7 @@ export default function CreateProductBasicInfo({
             <input
               type="number"
               placeholder="0"
+              min="0"
               value={compareAtPrice}
               onChange={(e) => {
                 onCompareAtPriceChange(e.target.value);
@@ -119,6 +121,7 @@ export default function CreateProductBasicInfo({
             </label>
             <input
               type="number"
+              min="0"
               placeholder="₦ 0.00"
               value={price}
               onChange={(e) => {

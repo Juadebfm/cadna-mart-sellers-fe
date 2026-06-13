@@ -17,6 +17,9 @@ import SignupApplicationPending from "./pages/signup/SignupApplicationStatusPend
 import ViewProductPage from "./pages/homePage/product/ViewProductPage";
 import OrderDetailPage from "./pages/homePage/order/OrderDetailsPage";
 import CreateProductPage from "./pages/homePage/product/CreateProductPage";
+import BulkUploadPage from "./pages/homePage/product/BulkUpload";
+import StoreFrontPage from "./pages/homePage/StorefrontPage";
+import WalletPage from "./pages/homePage/WalletPage";
 
 function App() {
   return (
@@ -51,6 +54,9 @@ function App() {
         <Route path="products/:productId/view" element={<ViewProductPage />} />
         <Route path="products/create" element={<CreateProductPage />} />
         <Route path="products/edit" element={<EditProductPage />} />
+        <Route path="bulkupload" element={<BulkUploadPage />} />
+        <Route path="storefront" element={<StoreFrontPage />} />
+        <Route path="wallet" element={<WalletPage />} />
       </Route>
     </Routes>
   );

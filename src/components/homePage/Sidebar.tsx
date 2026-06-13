@@ -18,7 +18,7 @@ const MENU_LINKS = [
   { label: "Dashboard", icon: LayoutDashboard, to: "/seller" },
   { label: "Orders", icon: ReceiptText, to: "/seller/orders" },
   { label: "Products", icon: Package2, to: "/seller/products" },
-  { label: "Bulk Upload", icon: Upload, to: "/seller/bulk-upload" },
+  { label: "Bulk Upload", icon: Upload, to: "/seller/bulkupload" },
 ];
 
 const STORE_LINKS = [

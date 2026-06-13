@@ -6,7 +6,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/seller": "Dashboard",
   "/seller/orders": "Orders",
   "/seller/products": "Products",
-  "/seller/bulk-upload": "Bulk Upload",
+  "/seller/bulkupload": "Bulk Upload",
   "/seller/storefront": "Storefront",
   "/seller/wallet": "Wallet",
   "/seller/kyc": "KYC Verification",
@@ -14,8 +14,16 @@ const PAGE_TITLES: Record<string, string> = {
 
 function getPageTitle(pathname: string): string {
   if (PAGE_TITLES[pathname]) return PAGE_TITLES[pathname];
+
+  // Orders
   if (pathname.startsWith("/seller/orders/")) return "Orders";
+
+  // Products — specific routes first
+  if (pathname === "/seller/products/create") return "Create Product";
+  if (pathname.match(/^\/seller\/products\/[^/]+\/edit$/)) return "Edit Product";
+  if (pathname.match(/^\/seller\/products\/[^/]+\/view$/)) return "View Product";
   if (pathname.startsWith("/seller/products/")) return "Products";
+
   return "Dashboard";
 }
 
