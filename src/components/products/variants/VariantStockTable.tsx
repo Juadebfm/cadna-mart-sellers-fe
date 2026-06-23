@@ -1,5 +1,5 @@
 import { PRESET_COLOURS } from "./Constants";
-import type { TableRow } from "./types";
+import type { TableRow } from "./Types";
 
 interface Props {
   tableRows: TableRow[];

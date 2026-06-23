@@ -4,15 +4,21 @@ interface Props {
   onToggleWithdraw: () => void;
 }
 
-export default function WalletActions({ kycPending, showWithdrawForm, onToggleWithdraw }: Props) {
+export default function WalletActions({
+  kycPending,
+  showWithdrawForm,
+  onToggleWithdraw,
+}: Props) {
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+
+      {/* Withdraw to bank — always shows */}
       <button
         onClick={onToggleWithdraw}
         disabled={kycPending}
-        className={`px-5 py-2.5 rounded-lg text-[13px] font-medium transition ${
+        className={`w-full sm:w-auto px-5 py-2.5 rounded-lg text-[16px] font-medium transition ${
           kycPending
-            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-[#E5E7EB]"
             : showWithdrawForm
             ? "bg-[#4B4DD6] text-white"
             : "bg-[#5D5FEF] text-white hover:bg-[#4B4DD6]"
@@ -20,15 +26,19 @@ export default function WalletActions({ kycPending, showWithdrawForm, onToggleWi
       >
         Withdraw to bank
       </button>
-      <button className="px-5 py-2.5 rounded-lg border border-[#E5E7EB] text-[13px] text-[#4C4D60] hover:bg-gray-50 transition">
-        Generate statement
-      </button>
 
-      {kycPending && (
-        <p className="text-[12px] text-[#5D5FEF] font-medium">
+      {/* KYC pending  */}
+      {kycPending ? (
+        <p className="text-[16px] text-[#8900FF] font-medium">
           Withdrawals are enabled after KYC is verified
         </p>
+      ) : (
+        /* KYC done  */
+        <button className="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-[#BABAC1] text-[16px] text-[#4C4D60] hover:bg-gray-50 transition">
+          Generate statement
+        </button>
       )}
+
     </div>
   );
 }

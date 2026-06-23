@@ -11,14 +11,40 @@ export default function BulkUploadPage() {
 
   return (
     <div className="space-y-5">
-      <BulkUploadBanner onHowTo={() => console.log("How to")} />
+      <BulkUploadBanner
+        onHowTo={() => {
+          console.log("How to");
+        }}
+      />
+       
+       <BulkUploadStepper currentStep={step} />
 
-      <div className="bg-white rounded-xl border border-[#E5E7EB] px-6 py-6 space-y-8">
-        <BulkUploadStepper currentStep={step} />
-
-        {step === 1 && <Step1UploadImages onContinue={() => setStep(2)} />}
-        {step === 2 && <Step2UploadCSV onBack={() => setStep(1)} onSubmit={() => setStep(3)} />}
-        {step === 3 && <Step3Processing onDone={() => setStep(4)} />}
+      <div className=" ">
+        
+        {step === 1 && (
+          <Step1UploadImages
+            onContinue={() => {
+              setStep(2);
+            }}
+          />
+        )}
+        {step === 2 && (
+          <Step2UploadCSV
+            onBack={() => {
+              setStep(1);
+            }}
+            onSubmit={() => {
+              setStep(3);
+            }}
+          />
+        )}
+        {step === 3 && (
+          <Step3Processing
+            onDone={() => {
+              setStep(4);
+            }}
+          />
+        )}
         {step === 4 && <Step4Review />}
       </div>
     </div>

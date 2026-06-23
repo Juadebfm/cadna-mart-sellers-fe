@@ -123,7 +123,13 @@ export default function ProductsTable({
                       e.stopPropagation();
                     }}
                   >
-                    <ActionMenu productId={product.id} />
+                    <ActionMenu
+                      productId={product.id}
+                      productName={product.name}
+                      productStatus={
+                        product.status === "Live" ? "Live" : "Draft"
+                      }
+                    />
                   </td>
                 </tr>
               ))

@@ -1,5 +1,5 @@
 import ProductVariants from "@/components/products/variants/ProductVariants";
-import type { VariantGroup } from "@/components/products/variants/types";
+import type { VariantGroup } from "@/components/products/variants/Types";
 
 interface Props {
   hasVariants: boolean;

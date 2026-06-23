@@ -1,4 +1,3 @@
-// components/homePage/Sidebar.tsx
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "@/assets/images/homepage/cadnamart-logo.png";
@@ -11,6 +10,10 @@ import {
   Wallet,
   ShieldCheck,
   X,
+  User,
+  Headphones,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 import { useBreakpoint } from "@/core/hooks/useBreakpoint";
 
@@ -25,6 +28,11 @@ const STORE_LINKS = [
   { label: "Storefront", icon: Store, to: "/seller/storefront" },
   { label: "Wallet", icon: Wallet, to: "/seller/wallet" },
   { label: "KYC Verification", icon: ShieldCheck, to: "/seller/kyc" },
+];
+
+const BOTTOM_LINKS = [
+  { label: "Account Settings", icon: User, to: "/seller/accountsettings" },
+  { label: "Help Center", icon: Headphones, to: "/seller/support" },
 ];
 
 interface NavItemProps {
@@ -73,12 +81,12 @@ interface SidebarContentProps {
 
 function SidebarContent({ mode, onClose }: SidebarContentProps) {
   const collapsed = mode === "tablet";
+  const [showBottomLinks, setShowBottomLinks] = useState(false);
 
   function renderLogoArea() {
-    // Tablet — logo only, centered, no badge, no X
     if (mode === "tablet") {
       return (
-        <div className="flex justify-center py-5 px-2 ">
+        <div className="flex justify-center py-5 px-2">
           <img
             src={Logo}
             alt="Cadna Mart"
@@ -87,11 +95,9 @@ function SidebarContent({ mode, onClose }: SidebarContentProps) {
         </div>
       );
     }
-
-    // Mobile drawer — logo + X, no badge
     if (mode === "mobile") {
       return (
-        <div className="flex items-center justify-between py-5 px-4 ">
+        <div className="flex items-center justify-between py-5 px-4">
           <img src={Logo} alt="Cadna Mart" className="h-8" />
           <button
             onClick={onClose}
@@ -103,10 +109,8 @@ function SidebarContent({ mode, onClose }: SidebarContentProps) {
         </div>
       );
     }
-
-    // Desktop — logo + SELLER badge, spaced apart
     return (
-      <div className="flex items-center justify-between py-5 px-4 ">
+      <div className="flex items-center justify-between py-5 px-4">
         <img src={Logo} alt="Cadna Mart" className="h-8" />
         <span className="text-xs font-semibold text-[#8900FF] bg-[#F3E6FF] px-2.5 py-0.5 rounded-sm">
           SELLER
@@ -119,7 +123,7 @@ function SidebarContent({ mode, onClose }: SidebarContentProps) {
     <div className="flex flex-col h-full">
       {renderLogoArea()}
 
-      {/* Nav links */}
+      {/* Main nav */}
       <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
         <div>
           {!collapsed && (
@@ -152,30 +156,72 @@ function SidebarContent({ mode, onClose }: SidebarContentProps) {
         </div>
       </nav>
 
-      {/* User profile */}
-      <div
-        className={[
-          "border-t border-gray-100 py-4 flex items-center gap-3",
-          collapsed ? "justify-center px-2" : "px-4",
-        ].join(" ")}
-      >
-        <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-xs font-semibold shrink-0">
-          AO
-        </div>
-        {!collapsed && (
-          <div className="overflow-hidden">
-            <p className="text-sm font-medium text-gray-800 truncate">
-              Ada Okafor
-            </p>
-            <p className="text-xs text-gray-400 truncate">Ada's Boutique</p>
+      {/* Bottom section */}
+      <div className="border-t border-gray-100 px-3 pt-3 pb-3">
+        {/* Account Settings + Help Center — only shown when expanded */}
+        {showBottomLinks && !collapsed && (
+          <div className="space-y-1 mb-2">
+            {BOTTOM_LINKS.map((link) => (
+              <NavItem
+                key={link.to}
+                {...link}
+                collapsed={collapsed}
+                onNavigate={onClose}
+              />
+            ))}
           </div>
         )}
+
+        {/* Collapsed tablet mode — always show bottom link icons */}
+        {collapsed && (
+          <div className="space-y-1 mb-2">
+            {BOTTOM_LINKS.map((link) => (
+              <NavItem
+                key={link.to}
+                {...link}
+                collapsed={collapsed}
+                onNavigate={onClose}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* User card — clickable to toggle */}
+        <button
+          onClick={() => {
+            setShowBottomLinks((v) => !v);
+          }}
+          className={[
+            "w-full mt-2 flex items-center gap-3 rounded-xl border border-[#E5E7EB] bg-white hover:bg-gray-50 transition",
+            collapsed ? "justify-center p-2" : "px-3 py-3",
+          ].join(" ")}
+        >
+          <div className="w-9 h-9 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-semibold shrink-0">
+            AO
+          </div>
+          {!collapsed && (
+            <>
+              <div className="flex-1 overflow-hidden text-left">
+                <p className="text-[13px] font-semibold text-[#4C4D60] truncate">
+                  Ada Okafor
+                </p>
+                <p className="text-[11px] text-[#9899A3] truncate">
+                  Ada's Boutique
+                </p>
+              </div>
+              {showBottomLinks ? (
+                <ChevronDown size={14} className="text-[#9899A3] shrink-0" />
+              ) : (
+                <ChevronUp size={14} className="text-[#9899A3] shrink-0" />
+              )}
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
 }
 
-// animated hamburger
 interface HamburgerButtonProps {
   open: boolean;
   onClick: () => void;
@@ -210,10 +256,9 @@ function HamburgerButton({ open, onClick }: HamburgerButtonProps) {
   );
 }
 
-// ── main export
 export default function Sidebar() {
   const { isTablet, isDesktop } = useBreakpoint();
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   if (isDesktop) {
     return (

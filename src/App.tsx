@@ -20,6 +20,10 @@ import CreateProductPage from "./pages/homePage/product/CreateProductPage";
 import BulkUploadPage from "./pages/homePage/product/BulkUpload";
 import StoreFrontPage from "./pages/homePage/StorefrontPage";
 import WalletPage from "./pages/homePage/WalletPage";
+import KYCPage from "./pages/homePage/KYCPage";
+import AccountSettingsPage from "./pages/homePage/AccountSettingsPage";
+import SupportPage from "./pages/homePage/SupportPage";
+import CustomerReviewsPage from "./pages/homePage/product/CustomerReviewsPage";
 
 function App() {
   return (
@@ -57,6 +61,11 @@ function App() {
         <Route path="bulkupload" element={<BulkUploadPage />} />
         <Route path="storefront" element={<StoreFrontPage />} />
         <Route path="wallet" element={<WalletPage />} />
+        <Route path="kyc" element={<KYCPage />} />
+        <Route path="accountsettings" element={<AccountSettingsPage />} />
+        <Route path="support" element={<SupportPage />} />
+        <Route path="products/:productId/reviews" element={<CustomerReviewsPage />} />
+
       </Route>
     </Routes>
   );

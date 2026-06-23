@@ -27,7 +27,8 @@ export default function ViewRelatedProducts({
             Recommended Products
           </h2>
           <p className="text-[12px] sm:text-[13px] text-[#696A7A] mt-0.5 leading-snug">
-            Shown to buyers as "You might also like" on this product's page. Max 4 products.
+            Shown to buyers as "You might also like" on this product's page. Max
+            4 products.
           </p>
         </div>
         <button
@@ -35,49 +36,56 @@ export default function ViewRelatedProducts({
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#E5E7EB] text-[12px] text-[#4C4D60] hover:bg-gray-50 transition shrink-0"
         >
           <Plus className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">Add</span>
-          <span className="sm:hidden">Add</span>
+          Add
         </button>
       </div>
 
       {/* Product rows */}
       <div className="divide-y divide-[#F3F4F6]">
-        {products.map((product) => (
-          <div key={product.id} className="flex items-center gap-3 py-2.5">
-            {/* Image */}
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0">
-              {product.image ? (
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs font-semibold">
-                  {product.name.charAt(0)}
-                </div>
-              )}
-            </div>
+        {products.length === 0 ? (
+          <p className="text-[13px] text-[#9899A3] py-3 text-center">
+            No recommended products yet.
+          </p>
+        ) : (
+          products.map((product) => (
+            <div key={product.id} className="flex items-center gap-3 py-2.5">
+              {/* Image */}
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs font-semibold">
+                    {product.name.charAt(0)}
+                  </div>
+                )}
+              </div>
 
-            {/* Name + price */}
-            <div className="flex-1 min-w-0">
-              <p className="text-[13px] sm:text-[14px] font-medium text-[#4C4D60] truncate">
-                {product.name}
-              </p>
-              <p className="text-[12px] sm:text-[13px] text-[#5D5FEF] font-medium mt-0.5">
-                {product.price}
-              </p>
-            </div>
+              {/* Name + price */}
+              <div className="flex-1 min-w-0">
+                <p className="text-[13px] sm:text-[14px] font-medium text-[#4C4D60] truncate">
+                  {product.name}
+                </p>
+                <p className="text-[12px] sm:text-[13px] text-[#5D5FEF] font-medium mt-0.5">
+                  {product.price}
+                </p>
+              </div>
 
-            {/* Remove */}
-            <button
-              onClick={() => {onRemove(product.id)}}
-              className="w-7 h-7 flex items-center justify-center rounded-lg border border-[#E5E7EB] hover:border-red-200 hover:bg-red-50 transition shrink-0"
-            >
-              <X className="h-3.5 w-3.5 text-[#9899A3]" />
-            </button>
-          </div>
-        ))}
+              {/* Remove */}
+              <button
+                onClick={() => {
+                  onRemove(product.id);
+                }}
+                className="w-7 h-7 flex items-center justify-center rounded-lg border border-[#E5E7EB] hover:border-red-200 hover:bg-red-50 transition shrink-0"
+              >
+                <X className="h-3.5 w-3.5 text-[#9899A3]" />
+              </button>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

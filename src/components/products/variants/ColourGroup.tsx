@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { PRESET_COLOURS } from "./Constants";
-import type { ColourOption, VariantGroup } from "./types";
+import type { ColourOption, VariantGroup } from "./Types";
 
 interface Props {
   colourGroup: VariantGroup;

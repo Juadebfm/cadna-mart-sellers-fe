@@ -1,10 +1,12 @@
 import { Shield, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface KYCBannerProps {
   kycCompleted: boolean;
 }
 
 export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
+  const navigate = useNavigate();
   if (kycCompleted) return null;
 
   return (
@@ -24,7 +26,12 @@ export default function KYCBanner({ kycCompleted }: KYCBannerProps) {
         </div>
       </div>
 
-      <button className="shrink-0 w-full sm:w-auto px-4 py-2 text-sm font-semibold text-white bg-[#8900FF] rounded-lg hover:bg-[#7A00E5] transition-colors flex items-center justify-center gap-2">
+      <button
+        onClick={() => {
+          void navigate("/seller/kyc");
+        }}
+        className="shrink-0 w-full sm:w-auto px-4 py-2 text-sm font-semibold text-white bg-[#8900FF] rounded-lg hover:bg-[#7A00E5] transition-colors flex items-center justify-center gap-2"
+      >
         Complete KYC <ArrowRight size={16} />
       </button>
     </div>

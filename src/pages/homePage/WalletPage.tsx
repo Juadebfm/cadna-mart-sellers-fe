@@ -17,7 +17,7 @@ export default function WalletPage() {
   const [selectedTransaction, setSelectedTransaction] =
     useState<Transaction | null>(null);
 
-  const balance = kycDone ? 40700 : 0;
+  const balance = 40700;
 
   const filtered = MOCK_TRANSACTIONS.filter((t) => {
     const matchesSearch = t.title.toLowerCase().includes(search.toLowerCase());
@@ -32,7 +32,7 @@ export default function WalletPage() {
     return matchesSearch && matchesType && matchesStatus;
   });
 
-  const transactions = kycDone ? filtered : [];
+  const transactions = filtered;
 
   return (
     <div className="space-y-5">
@@ -46,7 +46,7 @@ export default function WalletPage() {
         }}
       />
 
-      {showWithdrawForm && kycDone && (
+      {showWithdrawForm && (
         <WithdrawForm
           onSubmit={() => {
             setShowWithdrawForm(false);

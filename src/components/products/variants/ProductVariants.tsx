@@ -4,7 +4,7 @@ import VariantToggle from "./VariantToggle";
 import SizeGroup from "./SizeGroup";
 import ColourGroup from "./ColourGroup";
 import VariantStockTable from "./VariantStockTable";
-import type { VariantGroup } from "./types";
+import type { VariantGroup } from "./Types";
 
 interface Props {
   hasVariants: boolean;

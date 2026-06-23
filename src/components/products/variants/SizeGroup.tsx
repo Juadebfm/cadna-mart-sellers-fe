@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { PRESET_SIZES } from "./Constants";
-import type { VariantGroup } from "./types";
+import type { VariantGroup } from "./Types";
 
 interface Props {
   sizeGroup: VariantGroup;

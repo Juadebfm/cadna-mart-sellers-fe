@@ -11,7 +11,7 @@ export default function TransactionModalShell({ title, onClose, children }: Prop
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
       <div className="bg-white rounded-2xl w-full max-w-sm flex flex-col max-h-[90vh]">
 
-        {/* Header — fixed, never scrolls */}
+        {/* Header  */}
         <div className="flex items-center justify-between px-5 pt-4 pb-2 shrink-0">
           <p className="text-[15px] font-semibold text-[#4C4D60]">{title}</p>
           <button onClick={onClose}>

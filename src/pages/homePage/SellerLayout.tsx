@@ -10,6 +10,8 @@ const PAGE_TITLES: Record<string, string> = {
   "/seller/storefront": "Storefront",
   "/seller/wallet": "Wallet",
   "/seller/kyc": "KYC Verification",
+  "/seller/accountsettings": "Account Settings",
+  "/seller/support": "Help & Support",
 };
 
 function getPageTitle(pathname: string): string {
@@ -20,10 +22,14 @@ function getPageTitle(pathname: string): string {
 
   // Products — specific routes first
   if (pathname === "/seller/products/create") return "Create Product";
-  if (pathname.match(/^\/seller\/products\/[^/]+\/edit$/)) return "Edit Product";
-  if (pathname.match(/^\/seller\/products\/[^/]+\/view$/)) return "View Product";
+  if (/^\/seller\/products\/[^/]+\/edit$/.exec(pathname)) return "Edit Product";
+  if (/^\/seller\/products\/[^/]+\/view$/.exec(pathname)) return "View Product";
   if (pathname.startsWith("/seller/products/")) return "Products";
-
+  if (pathname.startsWith("/seller/accountsettingS/"))
+    return "Account Settings";
+  if (pathname.startsWith("/seller/support/")) return "Help & Support";
+  if (/^\/seller\/products\/[^/]+\/reviews$/.exec(pathname))
+    return "Customer Reviews";
   return "Dashboard";
 }
 

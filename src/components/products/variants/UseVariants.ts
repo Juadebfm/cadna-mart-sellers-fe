@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PRESET_SIZES } from "./Constants";
-import type { ColourOption, TableRow, VariantGroup } from "./types";
+import type { ColourOption, TableRow, VariantGroup } from "./Types";
 
 export function useVariants(initialGroups: VariantGroup[] = []) {
   const [variantGroups, setVariantGroups] =

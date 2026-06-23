@@ -1,108 +1,91 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import ViewTopBar from "@/components/products/viewProduct/ViewTopBar";
-import ViewGallery from "@/components/products/viewProduct/ViewGallery";
+import ViewDetails from "@/components/products/viewProduct/ViewDetails";
 import ViewDescription from "@/components/products/viewProduct/ViewDescription";
+import ViewGallery from "@/components/products/viewProduct/ViewGallery";
 import ViewSpecifications from "@/components/products/viewProduct/ViewSpecifications";
 import ViewVariants from "@/components/products/viewProduct/ViewVariants";
 import ViewSalesChart from "@/components/products/viewProduct/ViewSalesChart";
-import ViewDetails from "@/components/products/viewProduct/ViewDetails";
 import ViewActions from "@/components/products/viewProduct/ViewActions";
 import ViewRelatedProducts from "@/components/products/viewProduct/ViewRelatedProducts";
-import { useState } from "react";
+import ManageRecommendationsModal from "@/components/products/modals/ManageRecommendationsModal";
+import Relatedimage1 from "@/assets/images/product/recommendedproduct.png";
+import Relatedimage2 from "@/assets/images/product/recommendedproduct2.png";
+import Relatedimage3 from "@/assets/images/product/recommendedproduct3.png";
 
-// ── Mock data — replace with API call using productId later ───────────────────
-const MOCK_PRODUCT = {
-  id: "1",
-  productName: "HTHIUM Portable Power Station",
-  price: "₦420,000",
-  sku: "SKU001",
-  category: "Electronics",
-  stock: 12,
-  totalSold: 47,
-  listedDate: "Nov 3, 2025",
-  status: "Live",
-  description:
-    "The HTHIUM Portable Power Station is a high-capacity home and office backup power solution designed to keep your essential appliances running during power outages. Built for the Nigerian market where grid power is unreliable, it delivers clean, stable power to laptops, fans, TVs, phones, and more — all from a single compact unit. Its sleek tower design fits neatly on a desk or shelf without taking up floor space.",
-  specs: [
-    { attribute: "Brand", value: "HTHIUM" },
-    { attribute: "Form Factor", value: "Desktop Tower" },
-    {
-      attribute: "Supported Devices",
-      value: "Lamps, fans, laptops, TVs, phones",
-    },
-    { attribute: "Output Ports", value: "AC + USB (multiple)" },
-    { attribute: "Colour", value: "White/Grey" },
-  ],
-  hasVariants: false,
-  growthPercent: 22,
-};
-
-const MOCK_RELATED = [
-  {
-    id: "r1",
-    name: 'Lenovo 27" FHD All-in-One Monitor',
-    price: "₦385,000",
-    image: "",
-  },
-  {
-    id: "r2",
-    name: 'HP 24" Windows 11 LED Monitor',
-    price: "₦145,000",
-    image: "",
-  },
-  {
-    id: "r3",
-    name: "EAGEAT Bluetooth RGB Wireless Mouse",
-    price: "₦8,100",
-    image: "",
-  },
-];
+interface RelatedProduct {
+  id: string;
+  name: string;
+  price: string;
+  image: string;
+}
 
 export default function ViewProductPage() {
-  const product = MOCK_PRODUCT;
+  const { productId = "1" } = useParams();
 
-  const [relatedProducts, setRelatedProducts] = useState(MOCK_RELATED);
-
-  const handleRemoveRelated = (id: string) => {
-    setRelatedProducts((prev) => prev.filter((p) => p.id !== id));
-  };
+  const [showRecommendations, setShowRecommendations] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState<RelatedProduct[]>([
+    {
+      id: "1",
+      name: 'Lenovo 27" FHD All-in-One Monitor',
+      price: "₦285,000",
+      image: Relatedimage1,
+    },
+    {
+      id: "2",
+      name: 'HP 24" Windows 11 LED Monitor',
+      price: "₦145,000",
+      image: Relatedimage2,
+    },
+    {
+      id: "3",
+      name: "EAGEAT Bluetooth RGB Wireless Mouse",
+      price: "₦8,500",
+      image: Relatedimage3,
+    },
+  ]);
 
   return (
     <div className="space-y-4">
-      <ViewTopBar productId={product.id} />
+      <ViewTopBar productId={productId} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Left — 2/3 width */}
+        {/* Left — main content (2/3) */}
         <div className="lg:col-span-2 space-y-4">
-          <ViewGallery />
           <ViewDescription
-            description={product.description}
-            productId={product.id}
+            productId={productId}
+            description="High-capacity portable power station with fast charging capabilities. Perfect for outdoor adventures and emergencies."
           />
-          <ViewSpecifications specs={product.specs} productId={product.id} />
-          <ViewVariants
-            hasVariants={product.hasVariants}
-            productId={product.id}
+          <ViewGallery />
+          <ViewSpecifications
+            productId={productId}
+            specs={[
+              { attribute: "Capacity", value: "500Wh" },
+              { attribute: "Power Output", value: "1000W AC" },
+              { attribute: "Weight", value: "6.5 kg" },
+              { attribute: "Warranty", value: "2 years" },
+            ]}
           />
-          <ViewSalesChart
-            totalSold={product.totalSold}
-            growthPercent={product.growthPercent}
-          />
+          <ViewVariants hasVariants={false} productId={productId} />
+          <ViewSalesChart totalSold={47} growthPercent={22} />
         </div>
 
-        {/* Right — 1/3 width */}
+        {/* Right — sidebar (1/3) */}
         <div className="space-y-4">
           <ViewDetails
-            productName={product.productName}
-            price={product.price}
-            sku={product.sku}
-            category={product.category}
-            stock={product.stock}
-            totalSold={product.totalSold}
-            listedDate={product.listedDate}
-            status={product.status}
+            productName="HTHIUM Portable Power Station"
+            price="₦420,000"
+            sku="SKU001"
+            category="Electronics"
+            stock={12}
+            totalSold={47}
+            listedDate="Nov 3, 2025"
+            status="Live"
           />
+
           <ViewActions
-            productId={product.id}
+            productId={productId}
             onDeactivate={() => {
               console.log("Deactivate");
             }}
@@ -110,15 +93,43 @@ export default function ViewProductPage() {
               console.log("Delete");
             }}
           />
+
           <ViewRelatedProducts
             products={relatedProducts}
             onAdd={() => {
-              console.log("Add related");
+              setShowRecommendations(true);
             }}
-            onRemove={handleRemoveRelated}
+            onRemove={(id) => {
+              setRelatedProducts((prev) => prev.filter((p) => p.id !== id));
+            }}
           />
         </div>
       </div>
+
+      {/* Manage Recommendations Modal */}
+      {showRecommendations && (
+        <ManageRecommendationsModal
+          initial={relatedProducts.map((p) => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            status: "Live" as const,
+          }))}
+          onClose={() => {
+            setShowRecommendations(false);
+          }}
+          onSave={(selected) => {
+            setRelatedProducts(
+              selected.map((p, i) => ({
+                id: p.id,
+                name: p.name,
+                price: p.price,
+                image: [Relatedimage1, Relatedimage2, Relatedimage3][i] ?? "",
+              })),
+            );
+          }}
+        />
+      )}
     </div>
   );
 }

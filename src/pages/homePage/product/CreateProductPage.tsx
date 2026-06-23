@@ -7,6 +7,8 @@ import CreateProductVariants from "@/components/products/createProduct/CreatePro
 import CreateProductVisibility from "@/components/products/createProduct/CreateProductVisibility";
 import CreateProductShipping from "@/components/products/createProduct/CreateProductShipping";
 import CreateProductDangerZone from "@/components/products/createProduct/CreateProductDangerZone";
+import CreateProductSuccessModal from "@/components/products/modals/CreateProductSuccessModal";
+import { useNavigate } from "react-router-dom";
 
 function generateSku() {
   return `CDN-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
@@ -28,6 +30,9 @@ export default function CreateProductPage() {
   const [status, setStatus] = useState("Live");
   const [weight, setWeight] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("Cadna Logistics");
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [createdProductId, setCreatedProductId] = useState("");
+  const navigate = useNavigate();
 
   // ── isValid — all required fields filled ──────────────────────────────────
   const isValid =
@@ -39,24 +44,9 @@ export default function CreateProductPage() {
 
   const handleSubmit = () => {
     if (!isValid) return;
-    // Later: call API to create product
-    console.log("Create product", {
-      productName,
-      sellingPrice,
-      compareAtPrice,
-      price,
-      sku,
-      stockQuantity,
-      lowStockAlert,
-      category,
-      description,
-      images,
-      specs,
-      hasVariants,
-      status,
-      weight,
-      deliveryMethod,
-    });
+    const newId = Math.random().toString(36).substring(2, 8);
+    setCreatedProductId(newId);
+    setShowSuccess(true);
   };
 
   const handleAddImage = (file: File) => {
@@ -88,6 +78,16 @@ export default function CreateProductPage() {
 
   return (
     <div className="space-y-4">
+      {showSuccess && (
+        <CreateProductSuccessModal
+          productName={productName}
+          productId={createdProductId}
+          onClose={() => {
+            setShowSuccess(false);
+            void navigate("/seller/products");
+          }}
+        />
+      )}
       <CreateProductTopBar isValid={isValid} onSubmit={handleSubmit} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -111,7 +111,9 @@ export default function CreateProductPage() {
             onLowStockAlertChange={setLowStockAlert}
             onCategoryChange={setCategory}
             onDescriptionChange={setDescription}
-            onRegenerateSku={() => { setSku(generateSku()); }}
+            onRegenerateSku={() => {
+              setSku(generateSku());
+            }}
           />
 
           <CreateProductImages
@@ -145,8 +147,12 @@ export default function CreateProductPage() {
           />
 
           <CreateProductDangerZone
-            onCloseProductSales={() => { console.log("Close sales"); }}
-            onDeleteProduct={() => { console.log("Delete product"); }}
+            onCloseProductSales={() => {
+              console.log("Close sales");
+            }}
+            onDeleteProduct={() => {
+              console.log("Delete product");
+            }}
           />
         </div>
       </div>
