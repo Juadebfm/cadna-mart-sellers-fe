@@ -20,16 +20,16 @@ function getPageTitle(pathname: string): string {
   // Orders
   if (pathname.startsWith("/seller/orders/")) return "Orders";
 
-  // Products — specific routes first
+  // Products — specific routes first, catch-all last
   if (pathname === "/seller/products/create") return "Create Product";
   if (/^\/seller\/products\/[^/]+\/edit$/.exec(pathname)) return "Edit Product";
   if (/^\/seller\/products\/[^/]+\/view$/.exec(pathname)) return "View Product";
+  if (/^\/seller\/products\/[^/]+\/reviews$/.exec(pathname)) return "Customer Reviews";
   if (pathname.startsWith("/seller/products/")) return "Products";
-  if (pathname.startsWith("/seller/accountsettingS/"))
-    return "Account Settings";
+
+  if (pathname.startsWith("/seller/accountsettings/")) return "Account Settings";
   if (pathname.startsWith("/seller/support/")) return "Help & Support";
-  if (/^\/seller\/products\/[^/]+\/reviews$/.exec(pathname))
-    return "Customer Reviews";
+
   return "Dashboard";
 }
 

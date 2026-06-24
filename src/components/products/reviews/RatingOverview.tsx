@@ -24,13 +24,13 @@ export default function RatingOverview({
   return (
     <div className="bg-white rounded-xl border border-[#E5E7EB] px-4 py-4 space-y-4">
       {/* Rating overview label */}
-      <p className="text-[11px] text-[#9899A3] uppercase tracking-wider font-medium">
+      <p className="text-[12px] text-[#9899A3] uppercase tracking-wider font-medium">
         Rating overview
       </p>
 
       {/* Average + stars */}
       <div className="flex items-center gap-3">
-        <p className="text-[36px] font-bold text-[#5D5FEF] leading-none">
+        <p className="text-[36px] font-bold text-[#8900FF] leading-none">
           {average}
         </p>
         <div>
@@ -59,9 +59,9 @@ export default function RatingOverview({
           return (
             <div key={star} className="flex items-center gap-2">
               <p className="text-[11px] text-[#9899A3] w-3 shrink-0">{star}</p>
-              <div className="flex-1 h-2 rounded-full bg-gray-100 overflow-hidden">
+              <div className="flex-1 h-2 rounded-full bg-[#F3E6FF] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-[#5D5FEF]"
+                  className="h-full rounded-full bg-[#8A38F5]"
                   style={{ width: `${percentage}%` }}
                 />
               </div>
